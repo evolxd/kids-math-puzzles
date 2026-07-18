@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>思维闯关 · 100道烧脑题</title>
+<meta name="description" content="100道中英对照思维训练题，六大关卡由浅入深，边闯关边打卡进度。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E8792C'/%3E%3Cpath d='M30 38a12 12 0 0 1 12-12h4a8 8 0 0 0 8 8 8 8 0 0 0 8-8h4a12 12 0 0 1 12 12v4a8 8 0 0 0-8 8 8 8 0 0 0 8 8v4a12 12 0 0 1-12 12h-4a8 8 0 0 0-8-8 8 8 0 0 0-8 8h-4a12 12 0 0 1-12-12v-4a8 8 0 0 0 8-8 8 8 0 0 0-8-8z' fill='%23FFF8EC'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,800;1,600&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF8EC;
+  --panel:#FFFFFF;
+  --ink:#20302E;
+  --ink-soft:#6B6152;
+  --line:#EDE1C6;
+  --brand:#E8792C;
+  --brand-ink:#7A3410;
+  --good:#2E9E8C;
+  --w1:#2E9E8C; --w1-soft:#E3F3EF;
+  --w2:#4C6FE0; --w2-soft:#E7EBFC;
+  --w3:#C2497D; --w3-soft:#FBE7F0;
+  --w4:#6FA83E; --w4-soft:#EEF6E4;
+  --w5:#E8792C; --w5-soft:#FDECDC;
+  --w6:#3E5C8A; --w6-soft:#E6EBF2;
+  --shadow: 0 1px 0 rgba(32,48,46,.05), 0 8px 20px -14px rgba(32,48,46,.35);
+}
+:root[data-theme="dark"]{
+  --bg:#161D1C; --panel:#1D2624; --ink:#F1ECDD; --ink-soft:#A6A08F; --line:#33403A;
+  --w1-soft:#1E3833; --w2-soft:#212A45; --w3-soft:#3A1F2C; --w4-soft:#28331B; --w5-soft:#3A2A17; --w6-soft:#1D2937;
+  --shadow: 0 1px 0 rgba(0,0,0,.3), 0 10px 24px -14px rgba(0,0,0,.6);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161D1C; --panel:#1D2624; --ink:#F1ECDD; --ink-soft:#A6A08F; --line:#33403A;
+    --w1-soft:#1E3833; --w2-soft:#212A45; --w3-soft:#3A1F2C; --w4-soft:#28331B; --w5-soft:#3A2A17; --w6-soft:#1D2937;
+    --shadow: 0 1px 0 rgba(0,0,0,.3), 0 10px 24px -14px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Noto Sans SC","Nunito",sans-serif;
+  transition:background .2s ease, color .2s ease;
+}
+.wrap{max-width:900px; margin:0 auto; padding:0 20px 90px;}
+a{color:inherit;}
+
+/* ---------- HERO ---------- */
+.hero{padding:52px 0 26px; position:relative;}
+.hero .kicker{
+  font-family:"JetBrains Mono",monospace; font-weight:600; font-size:12.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--brand);
+  display:inline-flex; align-items:center; gap:8px; margin-bottom:14px;
+}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);}
+h1{
+  font-family:"Baloo 2",sans-serif; font-weight:800;
+  font-size:clamp(32px,6vw,52px); line-height:1.08; margin:0 0 14px;
+  text-wrap:balance;
+}
+h1 .accent{color:var(--brand);}
+.hero p.sub{max-width:56ch; color:var(--ink-soft); font-size:16px; margin:0;}
+.hero p.sub .en{display:block; font-style:italic; font-size:13.5px; margin-top:4px; opacity:.85;}
+
+/* ---------- HUD ---------- */
+.hud{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:2px solid var(--line);
+  padding:12px 0;
+}
+.hud-inner{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+.hud-score{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:14px;
+  background:var(--panel); border:2px solid var(--line); border-radius:999px;
+  padding:6px 14px; box-shadow:var(--shadow); white-space:nowrap;
+}
+.hud-score b{color:var(--brand); font-size:16px;}
+.hud-bar{flex:1; min-width:120px; height:10px; background:var(--line); border-radius:999px; overflow:hidden;}
+.hud-bar > i{display:block; height:100%; width:0%; background:var(--brand); border-radius:999px; transition:width .5s cubic-bezier(.2,.8,.2,1);}
+.hud-worlds{display:flex; gap:6px; flex-wrap:wrap;}
+.hud-worlds a{
+  width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:12px;
+  text-decoration:none; border:2px solid var(--line); color:var(--ink-soft);
+  background:var(--panel);
+}
+.theme-btn{
+  margin-left:auto; border:2px solid var(--line); background:var(--panel); border-radius:999px;
+  width:36px;height:36px; display:flex;align-items:center;justify-content:center; cursor:pointer;
+  font-size:15px;
+}
+
+/* ---------- WORLD MAP (quick nav cards) ---------- */
+.map{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:30px 0 10px;}
+.map a{
+  text-decoration:none; color:var(--ink);
+  background:var(--card-soft); border:2px solid var(--line); border-radius:16px;
+  padding:16px 18px; display:flex; flex-direction:column; gap:6px;
+  box-shadow:var(--shadow);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.map a:hover{transform:translateY(-3px);}
+.map .num{font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:700; color:var(--card-c);}
+.map .name{font-family:"Baloo 2",sans-serif; font-weight:700; font-size:19px;}
+.map .en{font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em;}
+.map .prog{display:flex; align-items:center; gap:8px; margin-top:4px;}
+.map .prog .track{flex:1; height:8px; border-radius:999px; background:var(--line); overflow:hidden;}
+.map .prog .track > i{display:block; height:100%; width:0%; background:var(--card-c); border-radius:999px; transition:width .5s ease;}
+.map .prog span{font-family:"JetBrains Mono",monospace; font-size:11.5px; color:var(--ink-soft); white-space:nowrap;}
+
+/* ---------- WORLD (module) ---------- */
+.world{margin:52px 0 0;}
+.world-head{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:14px 20px; border-radius:16px 16px 0 0;
+  background:var(--card-c); color:#fff;
+}
+.world-head .badge{
+  font-family:"JetBrains Mono",monospace; font-weight:700; font-size:13px;
+  background:rgba(255,255,255,.22); border-radius:999px; padding:4px 10px;
+}
+.world-head h2{font-family:"Baloo 2",sans-serif; font-size:23px; margin:0; font-weight:700;}
+.world-head .en{font-family:"Nunito",sans-serif; font-style:italic; font-size:12.5px; opacity:.85;}
+.world-head .count{margin-left:auto; font-family:"JetBrains Mono",monospace; font-size:12.5px; opacity:.9;}
+
+.quests{
+  background:var(--panel); border:2px solid var(--line); border-top:none; border-radius:0 0 16px 16px;
+  box-shadow:var(--shadow);
+}
+.quest{
+  display:grid; grid-template-columns:44px 70px 1fr; gap:14px; align-items:start;
+  padding:14px 20px; border-bottom:1px solid var(--line);
+}
+.quest:last-child{border-bottom:none;}
+.quest.solved{background:var(--card-soft);}
+
+.chk{position:relative; width:26px; height:26px; margin-top:2px;}
+.chk input{position:absolute; inset:0; opacity:0; cursor:pointer; margin:0;}
+.chk .box{
+  width:26px; height:26px; border-radius:8px; border:2.5px solid var(--line);
+  display:flex; align-items:center; justify-content:center; background:var(--panel);
+  transition:background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.chk input:checked ~ .box{background:var(--card-c); border-color:var(--card-c); transform:scale(1.06);}
+.chk .box svg{width:15px;height:15px; opacity:0; transform:scale(.5); transition:opacity .15s ease, transform .15s ease;}
+.chk input:checked ~ .box svg{opacity:1; transform:scale(1);}
+.chk input:focus-visible ~ .box{outline:3px solid var(--brand); outline-offset:2px;}
+
+.lv{
+  font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:700;
+  color:var(--card-c); border:2px solid var(--card-c); border-radius:8px;
+  padding:3px 6px; text-align:center; white-space:nowrap; align-self:start;
+}
+.lv[data-lv="5"]{background:var(--card-c); color:#fff;}
+
+.zh{font-size:15.5px; line-height:1.5;}
+.en{font-family:"Nunito",sans-serif; font-style:italic; font-size:13px; color:var(--ink-soft); margin-top:5px; line-height:1.45;}
+.quest.solved .zh{color:var(--ink-soft);}
+
+/* per-world color wiring */
+#m1{--card-c:var(--w1); --card-soft:var(--w1-soft);}
+#m2{--card-c:var(--w2); --card-soft:var(--w2-soft);}
+#m3{--card-c:var(--w3); --card-soft:var(--w3-soft);}
+#m4{--card-c:var(--w4); --card-soft:var(--w4-soft);}
+#m5{--card-c:var(--w5); --card-soft:var(--w5-soft);}
+#m6{--card-c:var(--w6); --card-soft:var(--w6-soft);}
+.map a[href="#m1"]{--card-c:var(--w1); --card-soft:var(--w1-soft);}
+.map a[href="#m2"]{--card-c:var(--w2); --card-soft:var(--w2-soft);}
+.map a[href="#m3"]{--card-c:var(--w3); --card-soft:var(--w3-soft);}
+.map a[href="#m4"]{--card-c:var(--w4); --card-soft:var(--w4-soft);}
+.map a[href="#m5"]{--card-c:var(--w5); --card-soft:var(--w5-soft);}
+.map a[href="#m6"]{--card-c:var(--w6); --card-soft:var(--w6-soft);}
+
+footer{
+  margin-top:56px; padding-top:22px; border-top:2px dashed var(--line);
+  color:var(--ink-soft); font-size:13px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+}
+footer button{
+  font-family:"Nunito",sans-serif; font-weight:700; font-size:13px; color:var(--ink-soft);
+  background:none; border:2px solid var(--line); border-radius:999px; padding:7px 14px; cursor:pointer;
+}
+footer button:hover{border-color:var(--brand); color:var(--brand);}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important; scroll-behavior:auto !important;}
+}
+@media (max-width:480px){
+  .quest{grid-template-columns:32px 1fr; grid-template-areas:"chk lv" "chk text"; row-gap:8px;}
+  .chk{grid-area:chk;} .lv{grid-area:lv; justify-self:start;} .quest > div:last-child{grid-area:text;}
+}
+</style>
+</head>
+<body>
+
+<div class="hud">
+  <div class="wrap hud-inner">
+    <div class="hud-score">已闯关 <b id="hudCount">0</b> / 100</div>
+    <div class="hud-bar"><i id="hudFill"></i></div>
+    <div class="hud-worlds">
+      <a href="#m1" title="称重与信息推理" style="--card-c:var(--w1)">01</a>
+      <a href="#m2" title="组合与计数思维" style="--card-c:var(--w2)">02</a>
+      <a href="#m3" title="逻辑推演谜题" style="--card-c:var(--w3)">03</a>
+      <a href="#m4" title="空间与几何思维" style="--card-c:var(--w4)">04</a>
+      <a href="#m5" title="数字游戏与数论" style="--card-c:var(--w5)">05</a>
+      <a href="#m6" title="策略博弈与决策" style="--card-c:var(--w6)">06</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色模式">◐</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker"><span class="dot"></span>100 Puzzles · 6 Worlds · Lv.1 → Lv.5</p>
+  <h1>思维闯关<span class="accent">大挑战</span></h1>
+  <p class="sub">六个关卡，一百道烧脑题，从新手到大神一步步升级。勾选打卡，随时看到自己闯到哪一关了。
+    <span class="en">Six worlds, 100 brain-bending puzzles, each a Lv.1→Lv.5 ladder. Check off what you solve and watch your progress climb.</span>
+  </p>
+</header>
+
+<nav class="map">
+  <a href="#m1"><span class="num">WORLD 01 · 17题</span><span class="name">称重与信息推理</span><span class="en">Weighing & Information Logic</span>
+    <span class="prog"><span class="track"><i data-prog="m1"></i></span><span data-count="m1">0/17</span></span></a>
+  <a href="#m2"><span class="num">WORLD 02 · 16题</span><span class="name">组合与计数思维</span><span class="en">Combinatorics & Counting</span>
+    <span class="prog"><span class="track"><i data-prog="m2"></i></span><span data-count="m2">0/16</span></span></a>
+  <a href="#m3"><span class="num">WORLD 03 · 17题</span><span class="name">逻辑推演谜题</span><span class="en">Deductive Logic Puzzles</span>
+    <span class="prog"><span class="track"><i data-prog="m3"></i></span><span data-count="m3">0/17</span></span></a>
+  <a href="#m4"><span class="num">WORLD 04 · 17题</span><span class="name">空间与几何思维</span><span class="en">Spatial & Geometric Thinking</span>
+    <span class="prog"><span class="track"><i data-prog="m4"></i></span><span data-count="m4">0/17</span></span></a>
+  <a href="#m5"><span class="num">WORLD 05 · 16题</span><span class="name">数字游戏与数论</span><span class="en">Number Games & Theory</span>
+    <span class="prog"><span class="track"><i data-prog="m5"></i></span><span data-count="m5">0/16</span></span></a>
+  <a href="#m6"><span class="num">WORLD 06 · 17题</span><span class="name">策略博弈与决策</span><span class="en">Game Strategy & Decisions</span>
+    <span class="prog"><span class="track"><i data-prog="m6"></i></span><span data-count="m6">0/17</span></span></a>
+</nav>
+
+<!-- ===================== WORLD 1 ===================== -->
+<section class="world" id="m1">
+  <div class="world-head">
+    <span class="badge">WORLD 01</span>
+    <h2>称重与信息推理</h2>
+    <span class="en">Weighing &amp; Information Logic</span>
+    <span class="count">17 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m1-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">3个外表相同的球，其中1个较重，只称1次，找出较重的球。</div><div class="en">Three identical-looking balls, one heavier. Find it in a single weighing.</div></div></div>
+    <div class="quest" data-q="m1-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">4个球中有1个较重，只称1次，如何找出？</div><div class="en">Four balls, one heavier. Find it in a single weighing.</div></div></div>
+    <div class="quest" data-q="m1-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">8个球中有1个较重，只称2次找出。</div><div class="en">Eight balls, one heavier. Find it in two weighings.</div></div></div>
+    <div class="quest" data-q="m1-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">9个球中有1个较重，只称2次找出。</div><div class="en">Nine balls, one heavier. Find it in two weighings.</div></div></div>
+    <div class="quest" data-q="m1-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">1~20之间猜一个数，每次告诉你"大了/小了"，最多几次必猜中？</div><div class="en">Guess a number between 1 and 20, told "higher/lower" each time. Max guesses needed?</div></div></div>
+    <div class="quest" data-q="m1-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">1~100之间猜数字，用什么策略最多7次内必中？</div><div class="en">Guess a number 1-100 with the same feedback. What strategy guarantees success within 7 guesses?</div></div></div>
+    <div class="quest" data-q="m1-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">两个盒子标签全部贴错（一个写"红球"一个写"蓝球"，但实际都装反了），只摸1次就能纠正标签，怎么摸？</div><div class="en">Two boxes, both mislabeled ("red balls"/"blue balls" but swapped). Draw once to fix both labels.</div></div></div>
+    <div class="quest" data-q="m1-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">三个盒子标签全错（"苹果""橙子""混合"），只开1个盒子看1个水果，推出全部盒子内容。</div><div class="en">Three boxes labeled "apples/oranges/mixed" — all wrong. Open one, look at one fruit, deduce all contents.</div></div></div>
+    <div class="quest" data-q="m1-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">12枚硬币中有1枚假币，已知假币更重，3次称重找出。</div><div class="en">12 coins, one fake and known heavier. Find it in 3 weighings.</div></div></div>
+    <div class="quest" data-q="m1-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">3个砝码1克、3克、9克，天平两边都能放砝码，能称出1~13克之间所有整数重量吗？</div><div class="en">Weights of 1g, 3g, 9g (usable on either pan) — can you weigh every whole gram from 1 to 13?</div></div></div>
+    <div class="quest" data-q="m1-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">4个砝码1、3、9、27克，能称出1~40克所有整数重量吗？试称出5克。</div><div class="en">Weights 1,3,9,27g — can you weigh every integer gram 1-40? Try measuring 5g.</div></div></div>
+    <div class="quest" data-q="m1-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">8个球中有1个假球，不知道它偏重还是偏轻，2次称重找出并判断轻重。</div><div class="en">8 balls, one fake of unknown weight direction. Find it — and whether heavy or light — in 2 weighings.</div></div></div>
+    <div class="quest" data-q="m1-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">2个鸡蛋，100层楼，鸡蛋从某层扔下会碎（层数未知），最少扔几次能确定安全楼层？</div><div class="en">2 eggs, 100 floors. Some floor is the breaking point. Minimum drops to find it for certain?</div></div></div>
+    <div class="quest" data-q="m1-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">12枚硬币中有1枚假币，不知偏重偏轻，3次称重找出并判断轻重。</div><div class="en">12 coins, one fake of unknown weight direction. Find it and its direction in 3 weighings.</div></div></div>
+    <div class="quest" data-q="m1-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">13枚硬币，其中1枚假币（不知轻重），但你还有1枚"确定是真的"的标准币可用，3次称重找出假币——说说为什么多了1枚标准币能多称1枚硬币？</div><div class="en">13 coins, one fake (direction unknown), plus one guaranteed-genuine reference coin. Find the fake in 3 weighings — why does the reference coin let you handle one more coin?</div></div></div>
+    <div class="quest" data-q="m1-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">10桶药丸，其中1桶每粒都轻1克，正常药丸每粒10克，只用1次称重（电子秤）找出哪一桶是假的。</div><div class="en">10 barrels of pills; one barrel's pills are each 1g light. Using a digital scale just once, find the bad barrel.</div></div></div>
+    <div class="quest" data-q="m1-17"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">天平只用2次称重，最多能从多少个球里找出唯一1个不知轻重的假球？</div><div class="en">With only 2 weighings, what's the largest number of balls you can search to find one fake of unknown direction?</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== WORLD 2 ===================== -->
+<section class="world" id="m2">
+  <div class="world-head">
+    <span class="badge">WORLD 02</span>
+    <h2>组合与计数思维</h2>
+    <span class="en">Combinatorics &amp; Counting</span>
+    <span class="count">16 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m2-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">8个人的聚会，每两人握手一次，一共握手多少次？</div><div class="en">At a party of 8, everyone shakes hands with everyone else once. Total handshakes?</div></div></div>
+    <div class="quest" data-q="m2-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">一个六边形，能画出多少条对角线？</div><div class="en">How many diagonals does a hexagon have?</div></div></div>
+    <div class="quest" data-q="m2-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">一个4×4的方格网中，一共能数出多少个大小不同的正方形？</div><div class="en">In a 4×4 grid, how many squares of all sizes can you count?</div></div></div>
+    <div class="quest" data-q="m2-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">在3×3的方格网中，只能向右或向下走，从左上角到右下角一共有多少种走法？</div><div class="en">On a 3×3 grid, moving only right/down, how many paths from top-left to bottom-right?</div></div></div>
+    <div class="quest" data-q="m2-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">10颗一样的糖果分给3个小朋友（可以分到0颗），一共有多少种不同分法？</div><div class="en">10 identical candies split among 3 kids (0 allowed). How many distributions?</div></div></div>
+    <div class="quest" data-q="m2-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一个圆形披萨切1刀最多2块，切2刀最多4块，切3刀最多几块？切4刀呢？找出规律。</div><div class="en">A pizza cut with 1 line gives 2 pieces, 2 lines give 4. Max for 3 cuts? 4 cuts? Find the pattern.</div></div></div>
+    <div class="quest" data-q="m2-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">5个人排成一排拍照，一共有多少种不同的排列方式？</div><div class="en">5 people line up for a photo. How many different orders are possible?</div></div></div>
+    <div class="quest" data-q="m2-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">从1、2、3、4、5这5个数字中选3个组成三位数（不重复用同一数字），一共能组成多少个不同的三位数？</div><div class="en">Using digits 1-5 (no repeats), how many different 3-digit numbers can be formed?</div></div></div>
+    <div class="quest" data-q="m2-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一个骰子连续掷2次，两次点数之和等于7的组合有多少种？</div><div class="en">Rolling a die twice, how many outcome-pairs sum to 7?</div></div></div>
+    <div class="quest" data-q="m2-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">同样8人的聚会，如果有2对夫妻互相不握手，实际发生了多少次握手？</div><div class="en">At the same 8-person party, if 2 married couples skip shaking hands with their own spouse, how many handshakes actually happen?</div></div></div>
+    <div class="quest" data-q="m2-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个正方体的8个顶点，任选2个顶点连一条线段，一共能画出多少条不同长度的线段？</div><div class="en">A cube has 8 vertices. Connecting any 2 with a segment, how many segments of each distinct length exist?</div></div></div>
+    <div class="quest" data-q="m2-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">5×5的方格网中，一共能数出多少个正方形？</div><div class="en">In a 5×5 grid, how many total squares of all sizes?</div></div></div>
+    <div class="quest" data-q="m2-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">从0-9中选4个不同数字组成四位数（首位不为0），一共能组成多少个四位数？</div><div class="en">Choosing 4 different digits 0-9 to form a 4-digit number (no leading zero), how many are possible?</div></div></div>
+    <div class="quest" data-q="m2-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个班级30人，要选出3人组成一个小组（不分职位），一共有多少种选法？</div><div class="en">From a class of 30, how many ways to choose an unordered group of 3?</div></div></div>
+    <div class="quest" data-q="m2-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">一个凸十边形，一共能画出多少条对角线？它们最多能有多少个交点？</div><div class="en">A convex 10-sided polygon — how many diagonals, and the max number of interior intersection points?</div></div></div>
+    <div class="quest" data-q="m2-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">5个人围成一圈坐下（旋转后算同一种排法），一共有多少种不同的坐法？</div><div class="en">5 people sit around a circular table (rotations counted as the same arrangement). How many distinct seatings?</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== WORLD 3 ===================== -->
+<section class="world" id="m3">
+  <div class="world-head">
+    <span class="badge">WORLD 03</span>
+    <h2>逻辑推演谜题</h2>
+    <span class="en">Deductive Logic Puzzles</span>
+    <span class="count">17 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m3-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">岛上"诚实人"永远说真话，"说谎者"永远说假话。有人说"我是说谎者"，这句话可能吗？为什么？</div><div class="en">Truth-tellers always tell the truth, liars always lie. Someone says "I am a liar." Is this possible? Why?</div></div></div>
+    <div class="quest" data-q="m3-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">两扇门，一扇通向自由一扇通向危险，各站一个守卫（一个只说真话一个只说假话），你只能问1个问题确定安全门，怎么问？</div><div class="en">Two doors, two guards (one truth-teller, one liar). Ask one question to find the safe door.</div></div></div>
+    <div class="quest" data-q="m3-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">三个人站成一列。老师有3顶红帽2顶白帽随机给每人戴1顶。最后面的人猜不出，中间的人听到后也猜不出，最前面的人却立刻猜对了。他戴的是什么颜色？</div><div class="en">Three in a line, 3 red/2 white hats randomly assigned. The back can't guess; the middle, hearing that, still can't; the front instantly knows. What color?</div></div></div>
+    <div class="quest" data-q="m3-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">五个人身高各不相同：甲比乙高但比丙矮；丁最矮；戊比甲高但不是最高。请把五人从矮到高排序。</div><div class="en">Five people of different heights, given comparative clues. Order them shortest to tallest.</div></div></div>
+    <div class="quest" data-q="m3-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一个人住10楼，每天早上电梯下到1楼上班；下班回来只坐电梯到7楼再走楼梯上去，除非下雨天才直接坐到10楼。为什么？</div><div class="en">A man on the 10th floor always rides down, but only up to the 7th floor and walks the rest — except on rainy days. Why?</div></div></div>
+    <div class="quest" data-q="m3-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">三栋相邻房子，颜色红蓝绿，各养狗猫鸟，给出3条线索，推出每栋房子颜色和养的动物。</div><div class="en">Three houses (red/blue/green), each with a different pet. Given 3 clues, work out each house's color and pet.</div></div></div>
+    <div class="quest" data-q="m3-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">甲乙丙三人赛跑，甲说"我不是第一"，乙说"丙是第一"，丙说"我不是第一"。已知只有一人说假话，谁是第一名？</div><div class="en">Three racers each make a claim; exactly one is lying. Who came in first?</div></div></div>
+    <div class="quest" data-q="m3-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">三个盒子里各装两个球，标签"红红""蓝蓝""一红一蓝"全部贴错，只摸出1个球，推出三个盒子实际装的是什么。</div><div class="en">Three boxes of two balls each, mislabeled "red-red/blue-blue/one of each." Draw just one ball to deduce all three contents.</div></div></div>
+    <div class="quest" data-q="m3-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">谢丽尔的生日是5月4日、6月7日、7月8日或8月9日中的一天。她把月份告诉小明，日期告诉小华。经过三句对话推理，谢丽尔的生日是哪天？</div><div class="en">Cheryl's birthday is one of four dates. Month told to one friend, day to another. After their exchange, deduce the birthday.</div></div></div>
+    <div class="quest" data-q="m3-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个案发现场只有ABCD四个嫌疑人，每人说了一句话，只有一人说真话，推出谁是凶手。</div><div class="en">Four suspects each make one statement; only one is telling the truth. Deduce the culprit.</div></div></div>
+    <div class="quest" data-q="m3-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">四栋房子，颜色主人国籍宠物各不相同，给出5条线索，推断谁养鱼。</div><div class="en">Four houses, four nationalities, four pets. Given 5 clues, deduce who keeps the fish.</div></div></div>
+    <div class="quest" data-q="m3-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">五个人的年龄乘积是180，且没有人超过10岁，年龄都是正整数（可重复）。求所有可能组合，并说明为什么仅凭乘积不能确定唯一答案。</div><div class="en">Five ages multiply to 180, none over 10, positive integers (repeats allowed). Find all combinations and explain why the product alone doesn't pin down a unique answer.</div></div></div>
+    <div class="quest" data-q="m3-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">100盏灯编号1-100全部关闭。第k个人把编号是k的倍数的灯都按一下开关。第100个人操作完后，一共有多少盏灯是亮着的？</div><div class="en">100 lights, all off. Person k toggles every light whose number is a multiple of k. After all 100 people act, how many lights are on?</div></div></div>
+    <div class="quest" data-q="m3-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">五栋房子，颜色主人宠物饮品香烟各不相同（爱因斯坦斑马谜题简化版），推出谁养鱼。</div><div class="en">Five houses, five attributes each (a simplified Einstein's Riddle). Deduce who owns the fish.</div></div></div>
+    <div class="quest" data-q="m3-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">100个囚犯每人头顶1顶帽子（黑或白），只能看到别人的不能看到自己的。从队尾开始依次喊出自己猜测的颜色，其他人都能听到。最多能保证多少人猜对？</div><div class="en">100 prisoners in a line wearing black/white hats (see others', not own). Starting from the back, each guesses aloud. Max number guaranteed to guess correctly?</div></div></div>
+    <div class="quest" data-q="m3-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">三个神：真神永远说真话，假神永远说假话，随机神有时真有时假，你不知道谁是谁，他们只用"da"和"ja"回答（不知哪个代表"是"）。最多问3个问题，找出谁是真神。（这是逻辑学著名难题，作为选做挑战）</div><div class="en">Three gods — True, False, Random — identities unknown, answer only "da"/"ja" (meaning unknown). In 3 questions, identify the True god. (The famous "Hardest Logic Puzzle Ever" — bonus challenge.)</div></div></div>
+    <div class="quest" data-q="m3-17"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">（补充趣味题）一句古老的谜语："有一样东西，越洗越脏，是什么？"——虽然不是数学，但也是一种推理，猜猜看。</div><div class="en">(Bonus riddle) "The more you wash it, the dirtier it gets — what is it?" Not math, but the same kind of lateral reasoning.</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== WORLD 4 ===================== -->
+<section class="world" id="m4">
+  <div class="world-head">
+    <span class="badge">WORLD 04</span>
+    <h2>空间与几何思维</h2>
+    <span class="en">Spatial &amp; Geometric Thinking</span>
+    <span class="count">17 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m4-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">用6根火柴棍摆出2个正方形，只移动2根，变成3个正方形。</div><div class="en">Arrange 6 matchsticks into 2 squares; move only 2 sticks to make 3 squares.</div></div></div>
+    <div class="quest" data-q="m4-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">一张长方形纸，长是宽的2倍，只折1次（不剪）折出正方形形状。</div><div class="en">A rectangle twice as long as wide — fold it once (no cutting) into a square shape.</div></div></div>
+    <div class="quest" data-q="m4-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">现在是3点15分，时针和分针之间的夹角是多少度？</div><div class="en">At 3:15, what's the angle between the hour and minute hands?</div></div></div>
+    <div class="quest" data-q="m4-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">12小时内，时针和分针一共重合多少次？</div><div class="en">In 12 hours, how many times do the hour and minute hands overlap?</div></div></div>
+    <div class="quest" data-q="m4-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">用火柴摆出的等式"6+4=4"是错的，只移动1根火柴，让它变成正确的等式。</div><div class="en">The matchstick equation "6+4=4" is wrong. Move one matchstick to make it correct.</div></div></div>
+    <div class="quest" data-q="m4-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">一个正方体的表面展开图有多少种不同的展开方式？</div><div class="en">How many distinct ways can a cube's surface be unfolded flat (net patterns)?</div></div></div>
+    <div class="quest" data-q="m4-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一个8×8的棋盘剪掉相对的两个角，能否用1×2骨牌铺满剩下的62格？为什么？</div><div class="en">An 8×8 board with two opposite corners removed — can 31 dominoes tile the remaining 62 squares? Why or why not?</div></div></div>
+    <div class="quest" data-q="m4-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">国际象棋棋盘上，"马"从棋盘一角走到对角的另一角，最少需要走几步？</div><div class="en">A knight on a chessboard, moving corner to opposite corner — minimum moves?</div></div></div>
+    <div class="quest" data-q="m4-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一个长方体房间长30厘米宽12厘米高12厘米，蜘蛛在一面墙正中间，苍蝇在对面墙正中间，蜘蛛只能沿墙爬，最短要爬多远？</div><div class="en">A 30×12×12cm room; a spider and fly sit at the centers of opposite walls. Crawling along surfaces only, what's the shortest path?</div></div></div>
+    <div class="quest" data-q="m4-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">一张正方形纸，只剪1刀（剪直线），最多能把它分成几块？如果允许对折后再剪呢？</div><div class="en">A square of paper, cut with one straight line — max pieces? What if you fold it first, then make one cut?</div></div></div>
+    <div class="quest" data-q="m4-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">用4条直线，最多能把一个平面分成多少个区域？用n条直线呢？找规律。</div><div class="en">With 4 straight lines, what's the max number of regions a plane can be divided into? Generalize to n lines.</div></div></div>
+    <div class="quest" data-q="m4-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个正方体，用一个平面切一刀，切面最多能是几边形？</div><div class="en">Slicing a cube with a single flat plane, what's the maximum number of sides the cross-section can have?</div></div></div>
+    <div class="quest" data-q="m4-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个3×3×3的大正方体表面全涂色后切成27个小正方体，三面、两面、一面、没涂色的各有多少个？</div><div class="en">A 3×3×3 cube is painted on all faces, then cut into 27 unit cubes. How many have 3, 2, 1, or 0 painted faces?</div></div></div>
+    <div class="quest" data-q="m4-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个圆形时钟，只用时针的角度（不看分针），能不能唯一确定当前是几点几分？为什么？</div><div class="en">Using only the hour hand's angle, can you uniquely determine the exact time to the minute? Why or why not?</div></div></div>
+    <div class="quest" data-q="m4-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一张纸对折n次后，理论上有多少层？为什么现实中折不到10次？</div><div class="en">After folding a paper in half n times, how many layers are there in theory? Why can't you actually reach 10 folds?</div></div></div>
+    <div class="quest" data-q="m4-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">一个甜甜圈形状（环面）表面最少需要几种颜色，才能保证任意两个相邻区域颜色不同？</div><div class="en">On a donut-shaped (toroidal) surface, what's the minimum number of colors needed so no two adjacent regions share a color?</div></div></div>
+    <div class="quest" data-q="m4-17"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">一只蚂蚁在正方体的一个顶点，要爬到相对的顶点，只能沿表面爬，棱长为1，最短路径是多少？</div><div class="en">An ant at one vertex of a unit cube must crawl along the surface only to the opposite vertex. Shortest path length?</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== WORLD 5 ===================== -->
+<section class="world" id="m5">
+  <div class="world-head">
+    <span class="badge">WORLD 05</span>
+    <h2>数字游戏与数论</h2>
+    <span class="en">Number Games &amp; Number Theory</span>
+    <span class="count">16 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m5-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">用1、2、3、4（每个只能用一次），配合+-×÷和括号，让结果等于24，找出几种不同方法。</div><div class="en">Using 1,2,3,4 once each with +,-,×,÷ and parentheses, make 24. Find multiple solutions.</div></div></div>
+    <div class="quest" data-q="m5-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">心里想一个数，乘以2，加6，除以2，再减去原来的数，结果永远是3，为什么？</div><div class="en">Pick any number, double it, add 6, halve it, subtract the original — always get 3. Why?</div></div></div>
+    <div class="quest" data-q="m5-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">一个3×3的方格，把1-9填进去，让每行每列和两条对角线的和都相等（幻方），怎么填？</div><div class="en">Fill a 3×3 grid with 1-9 so every row, column, and diagonal sums equally (a magic square). How?</div></div></div>
+    <div class="quest" data-q="m5-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">找规律填空：2, 6, 12, 20, 30, __, __，并说出这个数列的通项公式。</div><div class="en">Find the pattern: 2, 6, 12, 20, 30, __, __ — and give a formula for the nth term.</div></div></div>
+    <div class="quest" data-q="m5-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">在算式 TWO + TWO = FOUR 中，每个字母代表一个数字，求每个字母代表什么数字。</div><div class="en">In TWO + TWO = FOUR, each letter is a digit (consistent, distinct, no leading zero). Solve it.</div></div></div>
+    <div class="quest" data-q="m5-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">100以内，有多少个数字既是3的倍数又是4的倍数？</div><div class="en">Under 100, how many numbers are multiples of both 3 and 4?</div></div></div>
+    <div class="quest" data-q="m5-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">任意选一个三位数，把它的三个数字重新排列后与原数相减，结果一定是9的倍数吗？为什么？</div><div class="en">Take any 3-digit number, rearrange its digits, subtract the smaller from the larger — is the result always a multiple of 9? Why?</div></div></div>
+    <div class="quest" data-q="m5-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">"回文数"从左往右读和从右往左读都一样（比如121、3443）。100到1000之间，一共有多少个回文数？</div><div class="en">A palindrome number reads the same forwards and backwards. How many exist between 100 and 1000?</div></div></div>
+    <div class="quest" data-q="m5-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">神奇数字1089：任选一个三位数（百位比个位大2以上），倒过来减去它，再加上倒序，最后总会得到1089。试验证并想想为什么。</div><div class="en">The magic number 1089: pick a 3-digit number (hundreds digit ≥2 more than units), reverse-subtract, then add the reverse — always 1089. Verify, and think about why.</div></div></div>
+    <div class="quest" data-q="m5-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一个数如果等于它所有真因数之和，叫"完全数"，比如6=1+2+3。100以内还有一个完全数是28，试着验证。</div><div class="en">A perfect number equals the sum of its proper divisors (6=1+2+3). Verify that 28 is also perfect.</div></div></div>
+    <div class="quest" data-q="m5-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">斐波那契数列中，任意连续两项的比值随数列变长会越来越接近一个特殊的数，猜猜是多少？</div><div class="en">In the Fibonacci sequence, the ratio of consecutive terms converges to a special number as it grows. What is it?</div></div></div>
+    <div class="quest" data-q="m5-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">从1开始报数，凡是3的倍数或含数字3的都要拍手不能说，1-50中一共有多少个数字需要拍手？</div><div class="en">Counting from 1, clap instead of saying any multiple of 3 or number containing digit 3. How many claps between 1 and 50?</div></div></div>
+    <div class="quest" data-q="m5-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">100!（100的阶乘）末尾一共有多少个0？</div><div class="en">How many trailing zeros does 100! (100 factorial) have?</div></div></div>
+    <div class="quest" data-q="m5-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">有没有可能找到连续100个正整数，它们都不是质数？为什么一定存在？</div><div class="en">Can you find 100 consecutive positive integers with none prime? Explain why such a run must exist.</div></div></div>
+    <div class="quest" data-q="m5-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">用0-9这10个数字各用一次，组成两个五位数，让它们的差最大是多少？最小（非零）是多少？</div><div class="en">Using digits 0-9 once each to form two 5-digit numbers, what's the largest possible difference? Smallest nonzero difference?</div></div></div>
+    <div class="quest" data-q="m5-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">任意写一个数，把各位数字平方后相加得到新数，重复这个过程，最后要么停在1，要么进入循环4→16→37→58→89→145→42→20→4。找出100以内所有的"快乐数"。</div><div class="en">Sum the squares of a number's digits repeatedly; you end at 1 or in a fixed cycle. These "happy numbers" include 1. Find all under 100.</div></div></div>
+  </div>
+</section>
+
+<!-- ===================== WORLD 6 ===================== -->
+<section class="world" id="m6">
+  <div class="world-head">
+    <span class="badge">WORLD 06</span>
+    <h2>策略博弈与决策</h2>
+    <span class="en">Game Strategy &amp; Optimal Decisions</span>
+    <span class="count">17 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="m6-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="zh">一个农夫要带狼、羊、白菜过河，船每次只能带1样，没人看着狼吃羊、羊吃菜，怎样安排都安全过河？</div><div class="en">A farmer must cross a river with a wolf, sheep, and cabbage — boat carries one at a time, unattended pairs are unsafe. Find a safe plan.</div></div></div>
+    <div class="quest" data-q="m6-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">桌上21颗石子，两人轮流拿1、2或3颗，拿到最后一颗的人赢，如果你先拿，怎样保证必赢？</div><div class="en">21 stones; players alternately take 1-3; last to take wins. As first player, what's the winning strategy?</div></div></div>
+    <div class="quest" data-q="m6-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">两个人分一块蛋糕，用"一人切一人选"最公平，为什么这样设计是公平的？</div><div class="en">Two people split a cake with "one cuts, the other chooses." Why does this guarantee fairness?</div></div></div>
+    <div class="quest" data-q="m6-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">猴子要运一堆香蕉过一段距离，每次只能扛走一部分，路上还要吃掉一部分，求最多能运到目的地多少根（简化提示版）。</div><div class="en">A monkey must transport bananas over a distance, carrying limited amounts and eating some en route. What's the max delivered? (Simplified)</div></div></div>
+    <div class="quest" data-q="m6-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">三个人分一块蛋糕，怎样设计规则，让每个人都觉得自己分到的至少和别人一样多？</div><div class="en">Design a rule for three people to split a cake so everyone feels they got at least as much as anyone else.</div></div></div>
+    <div class="quest" data-q="m6-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">四个人过一座桥，天黑只有1支手电筒，每次最多2人同行，四人单独过桥要1、2、5、10分钟，两人同行按慢的算，怎样安排能在17分钟内全部过桥？</div><div class="en">Four cross a bridge at night with one flashlight, max 2 at a time (slower pace applies), times 1/2/5/10 min. Get everyone across in 17 minutes.</div></div></div>
+    <div class="quest" data-q="m6-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">10枚硬币3枚正面朝上其余反面朝上，房间全黑摸不出正反，只能翻动硬币，如何分成两堆使两堆正面朝上数量相同？</div><div class="en">10 coins, 3 heads-up, in total darkness (can't feel which side is up) — only flipping allowed. Split into two piles with equal heads-up counts.</div></div></div>
+    <div class="quest" data-q="m6-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="zh">有10颗糖，两个人轮流拿，每次拿1颗或2颗，谁拿到最后一颗谁赢，如果你先拿，怎么保证赢？如果改成拿到最后一颗算输呢？</div><div class="en">10 candies, alternating turns taking 1 or 2; last to take wins. Winning strategy as first player? What changes if taking the last one means losing?</div></div></div>
+    <div class="quest" data-q="m6-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">3对夫妻过河，船最多载2人，任何女士不能在没有自己丈夫在场的情况下和别的男士单独在一起，怎样设计过河方案？</div><div class="en">Three couples cross a river, boat holds 2, no woman may be alone with another man unless her husband is present. Design the crossing.</div></div></div>
+    <div class="quest" data-q="m6-10"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一堆100颗石子，两人轮流拿，每次能拿的数量必须是上一个人所拿数量的1倍或2倍（第一个人任意拿），拿到最后一颗的人赢。先手还是后手会赢？</div><div class="en">100 stones; each turn's take must be 1x or 2x the previous turn's take (first turn is free), last to take wins. Does first or second player win?</div></div></div>
+    <div class="quest" data-q="m6-11"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">100个海盗按顺序分100枚金币，最资深的先提方案，过半数同意才通过，否则提议者被扔下船。假设每个海盗都绝顶聪明又想活命还想多拿钱，最资深的应该怎么分？</div><div class="en">100 pirates split 100 gold coins; the most senior proposes a split, needs a majority vote or gets thrown overboard. What should the senior pirate propose?</div></div></div>
+    <div class="quest" data-q="m6-12"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">5个水手和1只猴子摘了一堆椰子，每人半夜偷偷分成5份多1个给猴子藏起自己一份，早上再平分剩下的也是5份多1个给猴子，最少原来有多少个椰子？</div><div class="en">Five sailors and a monkey share coconuts; each secretly divides into 5 (with 1 leftover for the monkey) during the night, and the morning split does the same. Smallest possible original pile?</div></div></div>
+    <div class="quest" data-q="m6-13"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="4">Lv.4</span><div><div class="zh">一场淘汰赛有100名选手，每场淘汰1人直到剩1个冠军，一共需要打多少场比赛？</div><div class="en">A single-elimination tournament with 100 players, one eliminated per match, until one champion remains. How many matches total?</div></div></div>
+    <div class="quest" data-q="m6-14"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">100个囚犯轮流进入一个只有开关的房间，任何时候有人可以宣布"所有人都进过这个房间了"。他们应该怎样设计策略？</div><div class="en">100 prisoners are randomly and repeatedly sent one at a time into a room with only a light switch; anyone may declare "everyone has visited." Design a strategy that lets them eventually be certain.</div></div></div>
+    <div class="quest" data-q="m6-15"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">甲乙两人轮流报数，从1开始，每次可以报1个或2个连续的数，谁先报到50谁赢，先手有没有必胜策略？</div><div class="en">Two players alternately count upward from 1, each turn saying 1 or 2 consecutive numbers; whoever says 50 wins. Does the first player have a winning strategy?</div></div></div>
+    <div class="quest" data-q="m6-16"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="5">Lv.5</span><div><div class="zh">一个岛上有N个囚犯，每天随机挑1人进入有灯泡的房间，可以开灯关灯或不动，任何人都可以宣布"所有人都进过房间了"。灯一开始是关的，设计策略让某天有人能100%确定所有人都进过房间。</div><div class="en">N prisoners, one randomly chosen each day to enter a room with a lightbulb (can toggle it or not); anyone may declare "everyone has visited." The light starts off. Design a strategy guaranteeing certainty.</div></div></div>
+    <div class="quest" data-q="m6-17"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="zh">（补充）三个海盗分5颗宝石，规则是抽签决定顺序，每人提方案需过半数同意，不同意提议者会被淘汰。试着简化想想第一个提议人该怎么分。</div><div class="en">(Bonus, simpler) Three pirates split 5 gems under the same majority-vote rule. Work out what the first proposer should suggest.</div></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>共 100 题 · 六大关卡 · 每关 Lv.1→Lv.5 阶梯递进</span>
+  <button id="resetBtn">重置打卡进度 · Reset progress</button>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var KEY = 'thinking100.solved.v1';
+  var solved = {};
+  try { solved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+
+  var worldIds = ['m1','m2','m3','m4','m5','m6'];
+  var totals = {m1:17,m2:16,m3:17,m4:17,m5:16,m6:17};
+
+  function save(){ localStorage.setItem(KEY, JSON.stringify(solved)); }
+
+  function render(){
+    var total = 0, done = 0;
+    worldIds.forEach(function(w){
+      var count = 0;
+      document.querySelectorAll('.quest[data-q^="'+w+'-"]').forEach(function(q){
+        var id = q.getAttribute('data-q');
+        var cb = q.querySelector('input[type="checkbox"]');
+        var isSolved = !!solved[id];
+        cb.checked = isSolved;
+        q.classList.toggle('solved', isSolved);
+        if(isSolved) count++;
+      });
+      total += totals[w];
+      done += count;
+      var pct = Math.round(100 * count / totals[w]);
+      var track = document.querySelector('.map i[data-prog="'+w+'"]');
+      if(track) track.style.width = pct + '%';
+      var label = document.querySelector('.map span[data-count="'+w+'"]');
+      if(label) label.textContent = count + '/' + totals[w];
+    });
+    document.getElementById('hudCount').textContent = done;
+    document.getElementById('hudFill').style.width = Math.round(100*done/total) + '%';
+  }
+
+  document.querySelectorAll('.quest').forEach(function(q){
+    var id = q.getAttribute('data-q');
+    var cb = q.querySelector('input[type="checkbox"]');
+    cb.addEventListener('change', function(){
+      solved[id] = cb.checked;
+      save();
+      render();
+    });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if(confirm('确定要清空所有打卡记录吗？Reset all progress?')){
+      solved = {};
+      save();
+      render();
+    }
+  });
+
+  // theme toggle
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var THEME_KEY = 'thinking100.theme';
+  var saved = localStorage.getItem(THEME_KEY);
+  if(saved){ root.setAttribute('data-theme', saved); }
+  themeBtn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
