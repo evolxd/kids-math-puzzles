@@ -237,6 +237,35 @@ h1 .accent{color:var(--brand);}
 .report-item.pending .rq::before{content:"— "; color:var(--ink-soft);}
 .report-copy-note{font-size:12px; color:var(--ink-soft); margin-top:10px;}
 
+/* parent center */
+.pc-section{margin-bottom:22px;}
+.pc-section h3{font-family:"Baloo 2",sans-serif; font-size:16px; margin:0 0 10px;}
+.pc-empty{color:var(--ink-soft); font-size:13px;}
+.pc-stats{width:100%; border-collapse:collapse; font-size:12.5px;}
+.pc-stats th, .pc-stats td{padding:6px 8px; text-align:center; border-bottom:1px solid var(--line);}
+.pc-stats th{font-family:"JetBrains Mono",monospace; font-weight:700; color:var(--ink-soft); font-size:11px;}
+.pc-stats td:first-child, .pc-stats th:first-child{text-align:left;}
+.pc-stats tr.pc-total td{font-weight:800; border-top:2px solid var(--line); border-bottom:none;}
+.pc-grade-row{padding:12px 0; border-bottom:1px dashed var(--line);}
+.pc-grade-row:last-child{border-bottom:none;}
+.pc-q{font-weight:700; font-size:13px; margin-bottom:8px;}
+.pc-q .id{font-family:"JetBrains Mono",monospace; color:var(--ink-soft); font-weight:700; margin-right:6px;}
+.pc-answer-block{margin-bottom:6px; font-size:12.5px;}
+.pc-label{font-family:"JetBrains Mono",monospace; font-size:10px; font-weight:700; color:var(--ink-soft); letter-spacing:.04em; margin-bottom:2px;}
+.pc-child-ans{color:var(--ink);}
+.pc-child-ans.empty{color:var(--ink-soft); font-style:italic;}
+.pc-ref-ans{color:var(--ink-soft);}
+.pc-grade-btns{display:flex; gap:8px; margin-top:8px;}
+.grade-btn{
+  font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:700;
+  border-radius:999px; padding:5px 12px; cursor:pointer; border:1.5px solid var(--line);
+  background:var(--panel); color:var(--ink-soft);
+}
+.grade-btn.correct:hover{border-color:var(--good); color:var(--good);}
+.grade-btn.incorrect:hover{border-color:var(--brand); color:var(--brand);}
+.grade-btn.correct.active{background:var(--good); border-color:var(--good); color:#fff;}
+.grade-btn.incorrect.active{background:var(--brand); border-color:var(--brand); color:#fff;}
+
 /* per-world color wiring */
 #m1{--card-c:var(--w1); --card-soft:var(--w1-soft);}
 #m2{--card-c:var(--w2); --card-soft:var(--w2-soft);}
@@ -327,7 +356,7 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     <div class="quest" data-q="m1-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Eight balls, one heavier. Find it in two weighings.</div><div class="zh">8个球中有1个较重，只称2次找出。</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
     <div class="quest" data-q="m1-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Nine balls, one heavier. Find it in two weighings.</div><div class="zh">9个球中有1个较重，只称2次找出。</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
     <div class="quest" data-q="m1-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Guess a number between 1 and 20, told "higher/lower" each time. Max guesses needed?</div><div class="zh">1~20之间猜一个数，每次告诉你"大了/小了"，最多几次必猜中？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
-    <div class="quest" data-q="m1-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Guess a number 1-100 with the same feedback. What strategy guarantees success within 7 guesses?</div><div class="zh">1~100之间猜数字，用什么策略最多7次内必中？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+    <div class="quest" data-q="m1-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Guess a number between 1 and 100. After each guess you're told "too high" or "too low." What strategy guarantees success within 7 guesses?</div><div class="zh">1~100之间猜一个数，每次猜完都会被告知"大了"还是"小了"。用什么策略最多7次内必中？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
     <div class="quest" data-q="m1-07"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Two boxes, both mislabeled ("red balls"/"blue balls" but swapped). Draw once to fix both labels.</div><div class="zh">两个盒子标签全部贴错（一个写"红球"一个写"蓝球"，但实际都装反了），只摸1次就能纠正标签，怎么摸？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
     <div class="quest" data-q="m1-08"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Three boxes labeled "apples/oranges/mixed" — all wrong. Open one, look at one fruit, deduce all contents.</div><div class="zh">三个盒子标签全错（"苹果""橙子""混合"），只开1个盒子看1个水果，推出全部盒子内容。</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
     <div class="quest" data-q="m1-09"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="3">Lv.3</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">12 coins, one fake and known heavier. Find it in 3 weighings.</div><div class="zh">12枚硬币中有1枚假币，已知假币更重，3次称重找出。</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
@@ -489,6 +518,7 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
   <span>共 100 题 · 六大关卡 · 每关 Lv.1→Lv.5 阶梯递进</span>
   <div style="display:flex; gap:10px; flex-wrap:wrap;">
     <button id="reportBtn" style="font-family:'Nunito',sans-serif; font-weight:800; color:#fff; background:var(--brand); border:none; border-radius:999px; padding:7px 16px; cursor:pointer; font-size:13px;">生成做题报告 · Report for parents</button>
+    <button id="parentBtn" style="font-family:'Nunito',sans-serif; font-weight:800; color:#fff; background:var(--good); border:none; border-radius:999px; padding:7px 16px; cursor:pointer; font-size:13px;">家长中心 · Parent Center</button>
     <button id="resetBtn">重置打卡进度 · Reset progress</button>
   </div>
 </footer>
@@ -511,11 +541,37 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
   </div>
 </div>
 
+<div class="report-overlay" id="parentOverlay">
+  <div class="report-card">
+    <div class="report-head">
+      <h2>家长中心 · Parent Center</h2>
+      <button class="report-close" id="parentClose" aria-label="关闭">✕</button>
+    </div>
+    <p class="report-sub">每日做题统计，以及逐题核对孩子的答案并标记对错（用于计算正确率）。<br>Daily progress stats, plus grade each answer against the reference solution to track accuracy.</p>
+    <div class="report-body" id="parentBody"></div>
+  </div>
+</div>
+
 <script>
 (function(){
   var KEY = 'thinking100.solved.v1';
   var solved = {};
   try { solved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){}
+
+  var DATES_KEY = 'thinking100.dates.v1';
+  var dates = {};
+  try { dates = JSON.parse(localStorage.getItem(DATES_KEY) || '{}'); } catch(e){}
+  function saveDates(){ localStorage.setItem(DATES_KEY, JSON.stringify(dates)); }
+
+  var GRADES_KEY = 'thinking100.grades.v1';
+  var grades = {};
+  try { grades = JSON.parse(localStorage.getItem(GRADES_KEY) || '{}'); } catch(e){}
+  function saveGrades(){ localStorage.setItem(GRADES_KEY, JSON.stringify(grades)); }
+
+  function todayStr(){
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
 
   var worldIds = ['m1','m2','m3','m4','m5','m6'];
   var totals = {m1:17,m2:16,m3:17,m4:17,m5:16,m6:17};
@@ -552,6 +608,14 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     cb.addEventListener('change', function(){
       solved[id] = cb.checked;
       save();
+      if(cb.checked){
+        if(!dates[id]) dates[id] = todayStr();
+      } else {
+        delete dates[id];
+        delete grades[id];
+        saveGrades();
+      }
+      saveDates();
       render();
     });
   });
@@ -559,7 +623,11 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
   document.getElementById('resetBtn').addEventListener('click', function(){
     if(confirm('确定要清空所有打卡记录吗？Reset all progress?')){
       solved = {};
+      dates = {};
+      grades = {};
       save();
+      saveDates();
+      saveGrades();
       render();
     }
   });
@@ -597,7 +665,8 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
   function buildReport(){
     var textLines = [];
     var bodyHtml = '';
-    var doneCount = 0, totalCount = 0;
+    var doneCount = 0, totalCount = 0, gradedCount = 0, correctCount = 0;
+    var gradeLabel = {correct:'[✓对/Correct] ', incorrect:'[✗错/Incorrect] '};
 
     worldIds.forEach(function(w){
       var name = worldNames[w];
@@ -607,18 +676,20 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
       document.querySelectorAll('.quest[data-q^="'+w+'-"]').forEach(function(q){
         var id = q.getAttribute('data-q');
         var isSolved = !!solved[id];
+        var grade = grades[id];
         var zh = q.querySelector('.zh').textContent.trim();
         var en = q.querySelector('.en').textContent.trim();
         var ans = (answers[id] || '').trim();
         totalCount++;
         if(isSolved) doneCount++;
+        if(isSolved && grade){ gradedCount++; if(grade === 'correct') correctCount++; }
 
-        worldTextLines.push((isSolved ? '[完成] ' : '[未做] ') + zh);
+        worldTextLines.push((isSolved ? '[完成] ' : '[未做] ') + (grade ? gradeLabel[grade] : '') + zh);
         worldTextLines.push('  ' + en);
         if(ans) worldTextLines.push('  答案 / Answer: ' + ans);
 
         worldHtml += '<div class="report-item ' + (isSolved ? 'done' : 'pending') + '">' +
-          '<div class="rq">' + escapeHtml(zh) + '</div>' +
+          '<div class="rq">' + (grade ? escapeHtml(gradeLabel[grade]) : '') + escapeHtml(zh) + '</div>' +
           (ans ? '<div class="ra">' + escapeHtml(ans) + '</div>' : '') +
           '</div>';
       });
@@ -634,8 +705,11 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
       '思维闯关 100题 · 做题报告 (Progress Report)',
       '生成时间 / Generated: ' + new Date().toLocaleString(),
       '完成进度 / Completed: ' + doneCount + ' / ' + totalCount,
-      ''
     ];
+    if(gradedCount > 0){
+      header.push('正确率 / Accuracy (graded only): ' + correctCount + ' / ' + gradedCount + ' (' + Math.round(100*correctCount/gradedCount) + '%)');
+    }
+    header.push('');
 
     return { text: header.concat(textLines).join('\n'), html: bodyHtml, done: doneCount, total: totalCount };
   }
@@ -688,6 +762,100 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     URL.revokeObjectURL(url);
   });
 
+  // parent center: daily stats + per-question grading
+  var parentOverlay = document.getElementById('parentOverlay');
+  var parentBody = document.getElementById('parentBody');
+
+  function computeDailyStats(){
+    var byDate = {};
+    Object.keys(dates).forEach(function(id){
+      var d = dates[id];
+      if(!byDate[d]) byDate[d] = {attempted:0, graded:0, correct:0};
+      byDate[d].attempted++;
+      var g = grades[id];
+      if(g){ byDate[d].graded++; if(g === 'correct') byDate[d].correct++; }
+    });
+    return byDate;
+  }
+
+  function buildParentCenter(){
+    var byDate = computeDailyStats();
+    var datesList = Object.keys(byDate).sort().reverse();
+
+    var statsHtml = '<div class="pc-section"><h3>每日统计 · Daily Stats</h3>';
+    if(datesList.length === 0){
+      statsHtml += '<p class="pc-empty">还没有打卡记录。No progress yet.</p>';
+    } else {
+      var totalAttempted=0, totalGraded=0, totalCorrect=0;
+      statsHtml += '<table class="pc-stats"><thead><tr><th>日期 Date</th><th>完成 Done</th><th>已批改 Graded</th><th>正确 Correct</th><th>正确率 Rate</th></tr></thead><tbody>';
+      datesList.forEach(function(d){
+        var s = byDate[d];
+        totalAttempted += s.attempted; totalGraded += s.graded; totalCorrect += s.correct;
+        var rate = s.graded > 0 ? Math.round(100*s.correct/s.graded) + '%' : '—';
+        statsHtml += '<tr><td>' + d + '</td><td>' + s.attempted + '</td><td>' + s.graded + '</td><td>' + s.correct + '</td><td>' + rate + '</td></tr>';
+      });
+      var totalRate = totalGraded > 0 ? Math.round(100*totalCorrect/totalGraded) + '%' : '—';
+      statsHtml += '<tr class="pc-total"><td>合计 Total</td><td>' + totalAttempted + '</td><td>' + totalGraded + '</td><td>' + totalCorrect + '</td><td>' + totalRate + '</td></tr>';
+      statsHtml += '</tbody></table>';
+    }
+    statsHtml += '</div>';
+
+    var gradeHtml = '<div class="pc-section"><h3>逐题批改 · Grade Answers</h3>';
+    var solvedIds = Object.keys(solved).filter(function(id){ return solved[id]; }).sort();
+    if(solvedIds.length === 0){
+      gradeHtml += '<p class="pc-empty">孩子还没有打卡任何题目。No questions checked off yet.</p>';
+    } else {
+      gradeHtml += '<div class="pc-grade-list">';
+      solvedIds.forEach(function(id){
+        var q = document.querySelector('.quest[data-q="'+id+'"]');
+        if(!q) return;
+        var zh = q.querySelector('.zh').textContent.trim();
+        var childAns = (answers[id] || '').trim();
+        var help = HELP[id];
+        var refAns = help ? (help[3] + ' / ' + help[2]) : '（无参考答案 no reference）';
+        var grade = grades[id] || '';
+        gradeHtml += '<div class="pc-grade-row" data-q="' + id + '">' +
+          '<div class="pc-q"><span class="id">' + id + '</span>' + escapeHtml(zh) + '</div>' +
+          '<div class="pc-answer-block"><div class="pc-label">孩子的答案 Child\'s answer</div><div class="pc-child-ans' + (childAns ? '' : ' empty') + '">' + (childAns ? escapeHtml(childAns) : '（没有写答案 no written answer）') + '</div></div>' +
+          '<div class="pc-answer-block"><div class="pc-label">参考答案 Reference answer</div><div class="pc-ref-ans">' + escapeHtml(refAns) + '</div></div>' +
+          '<div class="pc-grade-btns">' +
+            '<button type="button" class="grade-btn correct' + (grade==='correct'?' active':'') + '" data-grade="correct">✓ 正确 Correct</button>' +
+            '<button type="button" class="grade-btn incorrect' + (grade==='incorrect'?' active':'') + '" data-grade="incorrect">✗ 错误 Incorrect</button>' +
+          '</div>' +
+        '</div>';
+      });
+      gradeHtml += '</div>';
+    }
+    gradeHtml += '</div>';
+
+    parentBody.innerHTML = statsHtml + gradeHtml;
+  }
+
+  document.getElementById('parentBtn').addEventListener('click', function(){
+    buildParentCenter();
+    parentOverlay.classList.add('open');
+  });
+  document.getElementById('parentClose').addEventListener('click', function(){
+    parentOverlay.classList.remove('open');
+  });
+  parentOverlay.addEventListener('click', function(e){
+    if(e.target === parentOverlay) parentOverlay.classList.remove('open');
+  });
+  parentBody.addEventListener('click', function(e){
+    var btn = e.target.closest('.grade-btn');
+    if(!btn) return;
+    var row = btn.closest('.pc-grade-row');
+    var id = row.getAttribute('data-q');
+    var g = btn.getAttribute('data-grade');
+    if(grades[id] === g){
+      delete grades[id];
+    } else {
+      grades[id] = g;
+    }
+    saveGrades();
+    buildParentCenter();
+  });
+
   // hints & answers: [hintEN, hintZH, answerEN, answerZH]
   var HELP = {
     "m1-01": ["Put one ball on each side of the scale, leaving the third one aside.", "把其中2个球放在天平两边——留第三个不称。", "Weigh ball A vs ball B. Whichever side is heavier is the answer. If they balance, the answer is ball C, the one you left aside.", "把A和B放在天平两边称。哪边重答案就是那个球；如果平衡，答案就是没称的C球。"],
@@ -703,7 +871,7 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     "m1-11": ["Same trick as the 1,3,9 weights, just with one more weight added.", "跟1、3、9的砝码是同一个技巧，只是多加了一个。", "The same -1/0/+1 trick with 1, 3, 9, 27 covers every gram from 1-40. For 5g: 5 = 9-3-1, so the object plus the 3g and 1g weights go on one side, the 9g weight on the other (27g isn't needed here).", "同样的-1/0/+1技巧用1、3、9、27能称出1-40克所有整数重量。称5克：5=9-3-1，物体加3克、1克砝码放一边，9克放另一边（27克这次用不上）。"],
     "m1-12": ["With 3 balls and no idea which is heavier or lighter, weigh 2 of them and leave 1 aside first.", "3个球不知道谁重谁轻，先称其中2个，留1个不称。", "Weigh A vs B. If they balance, C is the fake; weigh it against A to learn if it's heavy or light. If they don't balance, weigh A against a known-normal ball (C, once you know it's not the fake): balanced means B is the fake, unbalanced means A is.", "称A vs B。如果平衡，C是假球——再拿C跟A称一次，就知道偏重还是偏轻。如果不平衡，拿A跟已知是真的C再称一次：平衡说明B是假球，不平衡说明A是假球。"],
     "m1-13": ["Don't jump the same number of floors every time — the gap should shrink by 1 each try so a break never costs extra total attempts.", "每次跳的层数不要一样——间隔每次少1层，这样万一碎了也不会多花次数。", "Drop from floor 14, then 27, 39, 50, 60, 69, 77, 84, 90, 95, 99, 100 (gaps of 14, 13, 12...1). If it breaks, test the floors below one at a time with the second egg. This guarantees the answer in at most 14 drops.", "依次在14、27、39、50、60、69、77、84、90、95、99、100层扔（间隔14,13,12...1，逐次减1）。一旦碎了，用第二个鸡蛋从上次没碎的楼层开始一层层试。这样最多14次一定能找到答案。"],
-    "m1-14": ["Split into 4/4/4 and weigh two groups first — think carefully about what balance vs imbalance tells you when the direction is unknown.", "分成4、4、4三堆，先称两堆——想清楚平衡和不平衡分别透露了什么。", "This is the classic 12-coin puzzle. Weigh 4 vs 4, leaving 4 aside. If balanced, the fake is among the 4 left aside; weigh 2 known-good coins against 2 of them to narrow it down, then finish with a third weighing. If unbalanced, the direction of the tip narrows down which coins could be heavy or light, and a carefully chosen second weighing (swapping coins between pans and in known-good ones) narrows it to a few suspects for the third weighing. Ask me if you want the full step-by-step case breakdown.", "这是经典的12硬币问题。先称4个vs4个，留4个不称。如果平衡，假币在留下的4个里，用2个已知真币vs其中2个继续缩小范围，第三次锁定答案。如果不平衡，根据哪边翘起来能推断哪些币可能偏重、哪些可能偏轻，第二次称重把部分硬币调换位置、换成已知真币，把范围缩小到几个嫌疑币，第三次锁定。这一步比较绕，需要的话我可以逐步演示。"],
+    "m1-14": ["Split into 4/4/4 and weigh two groups first — think carefully about what balance vs imbalance tells you when the direction is unknown.", "分成4、4、4三堆，先称两堆——想清楚平衡和不平衡分别透露了什么。", "This is the classic 12-coin puzzle — full solution: Weigh {1,2,3,4} vs {5,6,7,8}. If BALANCED, the fake is among {9,10,11,12} (1-8 are genuine). Weigh {9,10,11} vs 3 genuine coins: balanced means 12 is fake (weigh it against a genuine coin to learn heavy or light); one side heavier means the fake is in that trio and heavy (weigh 9 vs 10 — balanced means 11 is fake, otherwise the heavier one is); one side lighter works the same way but the fake is light. If {1,2,3,4} is HEAVIER, the fake is either a heavy coin among 1-4 or a light coin among 5-8 (9-12 are genuine). Weigh {1,2,5} vs {3,4,6}: balanced means the fake is 7 or 8 (light) — weigh 7 vs 8, the lighter one is fake; {1,2,5} heavier means the fake is 1, 2 (heavy) or 6 (light) — weigh 1 vs 2: balanced means 6 is fake (light), otherwise the heavier of the two is fake; {1,2,5} lighter means the fake is 3, 4 (heavy) or 5 (light) — weigh 3 vs 4: balanced means 5 is fake (light), otherwise the heavier of the two is fake. If {5,6,7,8} was heavier in the first weighing, just mirror this whole method with the two groups swapped.", "这是经典的12枚硬币问题，完整解法：先称{1,2,3,4} vs {5,6,7,8}。如果平衡，假币在{9,10,11,12}里（1-8都是真的）。再称{9,10,11} vs 3枚真币：平衡则12是假币（跟真币再称一次判断轻重）；如果变重，假币在这3个里且偏重（称9 vs 10：平衡说明是11，否则较重的那个就是）；如果变轻，思路一样但假币偏轻。如果第一次称{1,2,3,4}更重，说明假币要么是1-4里偏重的一个，要么是5-8里偏轻的一个（9-12都是真的）。称{1,2,5} vs {3,4,6}：平衡则假币是7或8（偏轻）——再称7 vs 8，轻的那个是假币；如果{1,2,5}更重，假币是1、2（偏重）或6（偏轻）——称1 vs 2：平衡说明6是假币（偏轻），否则较重的那个就是假币；如果{1,2,5}更轻，假币是3、4（偏重）或5（偏轻）——称3 vs 4：平衡说明5是假币（偏轻），否则较重的那个是假币。如果第一次是{5,6,7,8}更重，把两组角色互换，用同样方法就行。"],
     "m1-15": ["The reference coin lets you use one weighing purely to confirm direction, instead of always narrowing down suspects.", "有了标准币，你可以专门用它来验证方向，而不必每次称重都拿来缩小嫌疑范围。", "Without a reference coin, 3 weighings handle at most 12 coins, because every weighing has to help with BOTH finding which coin is fake AND whether it's heavy or light. A genuine reference coin can be swapped in purely to test direction, unlocking one extra coin's worth of capacity, extending the limit from 12 to 13.", "没有标准币时，3次称重最多测12枚，因为每次结果既要帮你缩小是谁的范围，又要判断轻还是重。有1枚真币，可以专门用它来验证方向，相当于多解锁1枚硬币的检测能力，上限从12变成13。"],
     "m1-16": ["Take a DIFFERENT number of pills from each barrel — the total weight's shortfall will point to the answer.", "从每桶拿不同数量的药丸——总重量缺了多少就能告诉你答案。", "Take 1 pill from barrel 1, 2 from barrel 2, ... 10 from barrel 10 (55 pills total). If all were genuine (10g each) the total would be 550g. The shortfall in grams equals the number of the bad barrel, since barrel k contributes k pills each 1g light.", "从第1桶拿1粒，第2桶拿2粒……第10桶拿10粒（共55粒）。如果都是真的（每粒10克），总重该是550克。实际少了多少克，就是第几桶假（第k桶贡献k粒，每粒轻1克）。"],
     "m1-17": ["Each extra weighing multiplies your search power by about 3 — follow the pattern from 2 weighings to 3 balls, and 3 weighings to 12 balls.", "每多称一次，能查的范围大约乘以3——按2次→3个、3次→12个的规律推算。", "The pattern is (3^k - 3)/2 for k weighings with no reference coin. For k=4: (81-3)/2 = 39 balls.", "规律是(3^k-3)/2（k是称重次数，没有标准币）。k=4时：(81-3)/2=39个球。"],
@@ -737,9 +905,9 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     "m3-12": ["Clues 1-3 pin down the nationality order completely before you even think about pets.", "先用线索①②③把国籍顺序完全确定，再想宠物。", "American=1, French=4 (clues 1,2). Clue3 forces Japan=2, China=3. Pets: American=dog (clue4), Chinese=fish (clue5). Japanese isn't cat (clue6), so Japanese=bird, leaving French=cat. The Chinese person keeps the fish, the French person keeps the cat.", "美国=1号，法国=4号。线索③要求中国紧挨日本右边，只能是日本=2号、中国=3号。美国养狗，中国养鱼。日本不养猫，所以日本养鸟，剩下法国养猫。养鱼的是中国人，养猫的是法国人。"],
     "m3-13": ["Break 180 into 5 factors, none bigger than 10 — start from the prime factorization 180 = 2x2x3x3x5.", "把180拆成5个因数，每个不超过10——可以从质因数分解180=2×2×3×3×5入手。", "Several sets work, e.g. 1,4,5,3,3 or 2,2,5,3,3 or 1,2,2,5,9 or 1,1,4,5,9 or 1,1,2,9,10. Since more than one combination fits, the product alone can't tell you which is correct, you'd need another clue, like the classic 'two children's ages' puzzle.", "有好几组都符合，比如1,4,5,3,3、2,2,5,3,3、1,2,2,5,9、1,1,4,5,9、1,1,2,9,10。因为不止一组符合，光靠乘积没法确定是哪组，需要再加一条线索才能锁定，这跟经典的两个孩子年龄谜题是同一个套路。"],
     "m3-14": ["A light ends up on only if its number gets toggled an odd number of times, and it gets toggled once per divisor of its number.", "一盏灯最后亮着，前提是它被按了奇数次——次数正好等于它的编号有多少个因数。", "Light n is toggled once per divisor of n. Most numbers have divisors in pairs, giving an even count, except perfect squares, whose square-root divisor pairs with itself, giving an odd count. So exactly the perfect-square-numbered lights (1,4,9...100, 10 of them) stay on.", "第n盏灯被按的次数＝n有多少个因数。大多数数字的因数成对出现，次数是偶数，只有完全平方数的因数会多出一个跟自己配对的，次数是奇数。所以最后只有编号是完全平方数的灯亮着（1,4,9...100，共10盏）。"],
-    "m3-15": ["Start from the two most absolute clues (Norwegian in house1, milk in house3) and work outward step by step.", "先从两条最绝对的线索入手（挪威人住1号，喝牛奶的住3号），再一步步往外推。", "This is the famous Einstein's Riddle. After chaining all 15 clues (Norwegian=house1, next to blue so house2=blue, green-white pair must be houses4-5 with green=coffee, then working through nationalities, drinks, and pets), the unique solution has the German owning the fish. It takes a full grid to trace properly, ask me if you want the complete walkthrough.", "这是著名的爱因斯坦谜题。把15条线索串起来（挪威人住1号，隔壁是蓝房子所以2号=蓝，绿白两间必须是4-5号且绿房子喝咖啡，再推国籍饮品宠物），唯一解是德国人养鱼。完整过程需要一张表格慢慢排除，需要的话我可以带你完整推一遍。"],
+    "m3-15": ["Start from the two most absolute clues (Norwegian in house1, milk in house3) and work outward step by step.", "先从两条最绝对的线索入手（挪威人住1号，喝牛奶的住3号），再一步步往外推。", "This is the famous Einstein's Riddle. Working through all 15 clues gives one unique solution — House1: Norway, yellow, water, Dunhill, cats. House2: Denmark, blue, tea, Blend, horses. House3: England, red, milk, Pall Mall, birds. House4: Germany, green, coffee, Prince, FISH. House5: Sweden, white, beer, Blue Master, dogs. So the German in house 4 owns the fish. Key steps: clue 9 fixes Norway=house1; clue 14 then forces blue=house2 (Norway's only neighbor); clue 4 (green immediately left of white) only fits houses 4-5, so green=house4, white=house5; clue 8 fixes milk=house3, and clue 5 (green house drinks coffee) then leaves water for house1 and beer for house5; the remaining clues (1,2,3,6,7,10,11,12,13,15) pin down every other cell, and the fish always lands on the German in house4.", "这是著名的爱因斯坦谜题。把全部15条线索推演完，答案唯一——1号房：挪威、黄色、水、Dunhill烟、猫。2号房：丹麦、蓝色、茶、Blend烟、马。3号房：英国、红色、牛奶、Pall Mall烟、鸟。4号房：德国、绿色、咖啡、Prince烟、鱼。5号房：瑞典、白色、啤酒、Blue Master烟、狗。所以养鱼的是4号房的德国人。关键推理：线索⑨定挪威=1号；线索⑭因此逼出蓝色=2号（挪威唯一的邻居）；线索④（绿房子紧挨白房子左边）只有4-5号能满足，所以绿=4号、白=5号；线索⑧定牛奶=3号，再结合线索⑤（绿房子喝咖啡）推出水只能是1号、啤酒是5号；剩下的线索（①②③⑥⑦⑩⑪⑫⑬⑮）依次唯一确定其余格子，鱼最终都落在4号房的德国人这里。"],
     "m3-16": ["The very back person can sacrifice their own guess to send everyone else a coded message.", "最后面的人可以牺牲自己的猜测，把信息编码传给前面所有人。", "The back person says white if the count of white hats they see is even, black if odd (a coded signal). Everyone after that figures out their own color by tracking the running parity from all the answers so far. This guarantees 99 correct guesses.", "最后面的人数一数看到的白帽子，偶数就喊白，奇数就喊黑（这是给别人的信号）。后面每个人都能根据前面所有回答推算出自己的颜色。这样能保证99人猜对。"],
-    "m3-17": ["Ask a question so convoluted that it doesn't matter whether the god you're asking lies — build a question about what ANOTHER god would say.", "问一个足够绕的问题，让你问的神说不说谎都无所谓——问的是另一个神会怎么回答。", "This is Boolos' Hardest Logic Puzzle Ever. The trick is a self-referencing question like: if I asked you whether X, would you say ja? This forces even Random or a liar to effectively reveal the truth. The full solution needs 3 carefully built questions, ask me if you want the complete strategy.", "这是逻辑学家Boolos提出的史上最难逻辑题。诀窍是问一种自我嵌套的问题，比如如果我问你X，你会说ja吗？这样不管问的是谁都能被迫变相说真话。完整解法需要精心设计3个问题，需要的话我可以带你完整推一遍。"],
+    "m3-17": ["Ask a question so convoluted that it doesn't matter whether the god you're asking lies — build a question about what ANOTHER god would say.", "问一个足够绕的问题，让你问的神说不说谎都无所谓——问的是另一个神会怎么回答。", "This is Boolos' Hardest Logic Puzzle Ever. The key trick: for any yes/no question Q, asking a god 'If I asked you Q, would you say ja?' always gets an answer that reveals Q's TRUE answer — ja if Q is really true, da if false — and this works whether you ask the True god or the False god (their two flips cancel out); only Random stays unpredictable. Full strategy: Q1, ask god A: 'If I asked you \"Is B Random?\", would you say ja?' — however A answers, this always identifies one specific god (B or C) guaranteed NOT Random; call them Safe. Q2, ask Safe: 'If I asked you \"Are you True?\", would you say ja?' — a ja-equivalent answer means Safe really is the True god (done!); a da-equivalent answer means Safe is the False god. Q3 (only needed if Safe turned out False): ask Safe 'If I asked you \"Is [one of the other two] True?\", would you say ja?' to identify the last two. That embedded-question trick is the one idea that unlocks the whole puzzle — the full case-by-case reasoning is genuinely intricate, well worth working through with a parent or teacher.", "这是逻辑学家Boolos提出的史上最难逻辑题。核心诀窍：对任何是非问题Q，问一个神\"如果我问你Q，你会说ja吗？\"——这个问题的答案永远会透露Q的真实答案：Q为真答\"ja\"，为假答\"da\"，而且不管问的是真神还是假神都成立（两次反转刚好抵消），只有随机神无法预测。完整3问策略：第1问，问神A：\"如果我问你'B是随机神吗'，你会说ja吗？\"不管A怎么回答，都能确定另一个神（B或C其中之一）一定不是随机神——记为\"安全神\"。第2问，问安全神：\"如果我问你'你是真神吗'，你会说ja吗？\"——答案等价于\"ja\"说明安全神真的是真神（完成！）；等价于\"da\"说明安全神是假神。第3问（只有安全神是假神时才需要）：问安全神\"如果我问你'剩下两个神里的某一个是真神吗'，你会说ja吗？\"，就能确定最后两个神的身份。这个\"嵌套提问\"的诀窍就是解开整题的关键——完整的逐种情况推理确实很绕，值得和家长或老师一起讨论。"],
     "m4-01": ["The lines are allowed to go OUTSIDE the square formed by the dots, don't box yourself in.", "直线可以画到9个点围成的正方形范围之外——别把自己框住了。", "Start from a corner dot and draw a zigzag that overshoots the grid boundary each time, letting the lines extend past the 3x3 square rather than staying inside it. That extra room outside the dots is the key trick.", "从边角出发，画出会超出点阵范围的折线，让直线延伸到3x3边界之外，而不是困在里面。点阵外面的这块空间就是解题关键。"],
     "m4-02": ["The rectangle is exactly twice as long as it is wide, where's the halfway point?", "长方形的长正好是宽的2倍——它的一半在哪？", "Fold it in half along the short direction, bringing the two short ends together. Since the length is exactly double the width, this fold produces a perfect square.", "沿短边方向对折（把两条短边对齐），因为长正好是宽的2倍，这样一折就正好是正方形。"],
     "m4-03": ["Don't forget the hour hand has already moved a quarter of the way from 3 to 4 by 3:15.", "别忘了3点15分时，时针已经从3走到4的四分之一路程了。", "The minute hand is at 90 degrees. The hour hand has moved 1/4 of the way from 3 to 4, which is 7.5 degrees past the 3 mark, so it's at 97.5 degrees. The angle between them is 7.5 degrees.", "分针指向90°。时针从3走到4已经走了1/4，也就是超过3那个位置7.5°，所以在97.5°。两者夹角＝7.5°。"],
@@ -771,7 +939,7 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     "m5-12": ["Count multiples of 3, count numbers containing digit 3, then don't double-count the ones that are both.", "先数3的倍数，再数含数字3的数，注意别把两者都满足的重复数了。", "Multiples of 3 up to 50: 16 numbers. Numbers containing digit 3: 14 numbers. Numbers that are both: 5. Total = 16+14-5 = 25.", "1-50里3的倍数16个，含数字3的数14个，两者都满足的5个，总数＝16+14-5=25个。"],
     "m5-13": ["Trailing zeros come from factors of 2x5, and there are way more 2s than 5s, so just count how many 5s are hiding in 1x2x...x100.", "末尾的0来自2×5，1到100里2的因子远比5多——数一数藏了多少个5就行。", "Count multiples of 5 (20), plus extra 5s from multiples of 25 (4 more). 20+4=24 trailing zeros.", "数5的倍数(20个)，再加25的倍数额外多贡献的(4个)，20+4=24个末尾0。"],
     "m5-14": ["Think about 101 factorial plus a small number, what does adding 2 through 101 give you?", "想想101!加上一个小数字——加上2到101分别会怎样？", "Yes: 101!+2, 101!+3, ... 101!+101 are 100 consecutive numbers, and each one is divisible by k (its offset), so none are prime.", "可以：101!+2到101!+101这100个连续数，每一个都能被对应的k整除，所以全都不是质数。"],
-    "m5-15": ["For the biggest difference, put the 5 largest digits in the first number and the 5 smallest in the second, but the second can't start with 0.", "要差最大，把5个最大数字放第一个数，最小的放第二个数（注意第二个不能以0开头）。", "Max difference: 98765 - 10234 = 88531. Minimum nonzero difference takes more careful digit swapping to get the two numbers as close as possible, fun to work through by trial.", "最大差：98765-10234=88531。最小非零差需要更精细地调整数字，让两数尽量接近，可以自己动手试试。"],
+    "m5-15": ["For the biggest difference, put the 5 largest digits in the first number and the 5 smallest in the second, but the second can't start with 0.", "要差最大，把5个最大数字放第一个数，最小的放第二个数（注意第二个不能以0开头）。", "Max difference: 98765 - 10234 = 88531 (biggest 5 digits descending, minus the smallest 5 digits with no leading zero). Minimum difference: 247, for example 50123 - 49876 = 247 — the trick is making the leading digits differ by just 1 (4 and 5 here), then giving the larger-leader number the smallest remaining digits and the smaller-leader number the largest remaining digits, so the gap closes as fast as possible.", "最大差：98765-10234=88531（5个最大数字从大到小排成一个数，5个最小数字排成不含前导0的最小数）。最小差：247，比如50123-49876=247——诀窍是让两个数的首位只差1（这里是4和5），首位较大的那个数配上剩下数字里最小的几个，首位较小的那个数配上剩下数字里最大的几个，这样差距能尽快被追平。"],
     "m5-16": ["Pick a number, square each digit and add them up, repeat, and track whether you land on 1 or the loop.", "挑一个数，把每位数字平方相加，重复这个过程，看是停在1还是进入循环。", "Under 100, the happy numbers are: 1,7,10,13,19,23,28,31,32,44,49,68,70,79,82,86,91,94,97, which is 19 numbers.", "100以内的快乐数：1、7、10、13、19、23、28、31、32、44、49、68、70、79、82、86、91、94、97，共19个。"],
     "m6-01": ["Think about what you can safely bring back WITH you on a return trip.", "想想回程时可以顺便带什么东西回来。", "Take the sheep across first. Go back alone, bring the wolf across, but bring the sheep back with you. Leave the sheep, take the cabbage across. Go back alone, bring the sheep across.", "先带羊过河。空手回来，带狼过河，但把羊带回来。留下羊，带白菜过河。空手回来，最后带羊过河。"],
     "m6-02": ["What total do you want to always leave for your opponent after each of your turns?", "你希望每次拿完后，给对方留下的总数是多少？", "Always leave a multiple of 4. Take 1 first (leaving 20), then take (4 minus whatever they took) each turn to keep leaving multiples of 4.", "每次拿完都给对方留4的倍数。先拿1颗留20，之后每次拿(4减对方拿的数量)，保持留给对方的是4的倍数。"],
