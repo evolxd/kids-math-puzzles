@@ -266,6 +266,21 @@ h1 .accent{color:var(--brand);}
 .grade-btn.correct.active{background:var(--good); border-color:var(--good); color:#fff;}
 .grade-btn.incorrect.active{background:var(--brand); border-color:var(--brand); color:#fff;}
 
+.pc-tabs{display:flex; gap:6px; margin-bottom:12px; flex-wrap:wrap;}
+.pc-tab{
+  font-family:"JetBrains Mono",monospace; font-size:11.5px; font-weight:700;
+  border-radius:999px; padding:5px 14px; cursor:pointer; border:1.5px solid var(--line);
+  background:var(--panel); color:var(--ink-soft);
+}
+.pc-tab.active{background:var(--brand); border-color:var(--brand); color:#fff;}
+.pc-chart-title{font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:700; color:var(--ink-soft); margin:14px 0 2px;}
+.pc-chart-wrap{overflow-x:auto; margin:4px 0 4px;}
+.pc-chart{display:block;}
+.pc-chart .chart-axis{stroke:var(--line); stroke-width:1;}
+.pc-chart .chart-val{font:700 10px "JetBrains Mono",monospace; fill:var(--ink-soft);}
+.pc-chart .chart-lbl{font:600 9px "JetBrains Mono",monospace; fill:var(--ink-soft);}
+.pc-chart-note{font-size:11px; color:var(--ink-soft); margin:2px 0 10px;}
+
 /* per-world color wiring */
 #m1{--card-c:var(--w1); --card-soft:var(--w1-soft);}
 #m2{--card-c:var(--w2); --card-soft:var(--w2-soft);}
@@ -608,26 +623,18 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     cb.addEventListener('change', function(){
       solved[id] = cb.checked;
       save();
-      if(cb.checked){
-        if(!dates[id]) dates[id] = todayStr();
-      } else {
-        delete dates[id];
-        delete grades[id];
-        saveGrades();
+      if(cb.checked && !dates[id]){
+        dates[id] = todayStr();
+        saveDates();
       }
-      saveDates();
       render();
     });
   });
 
   document.getElementById('resetBtn').addEventListener('click', function(){
-    if(confirm('确定要清空所有打卡记录吗？Reset all progress?')){
+    if(confirm('确定要清空当前的打卡勾选吗？做题历史和批改记录不会丢失，家长中心随时能看到。\nClear the checkmarks? Your history and grades stay intact in the Parent Center.')){
       solved = {};
-      dates = {};
-      grades = {};
       save();
-      saveDates();
-      saveGrades();
       render();
     }
   });
@@ -766,39 +773,119 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
   var parentOverlay = document.getElementById('parentOverlay');
   var parentBody = document.getElementById('parentBody');
 
-  function computeDailyStats(){
-    var byDate = {};
+  var currentGranularity = 'day';
+  var GRAN_LABEL = {day:'天', week:'周', month:'月', year:'年'};
+  var GRAN_CAP = {day:14, week:8, month:12, year:5};
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function addDays(dateStr, n){
+    var d = new Date(dateStr + 'T00:00:00');
+    d.setDate(d.getDate() + n);
+    return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
+  }
+  function isoWeekStart(dateStr){
+    var d = new Date(dateStr + 'T00:00:00');
+    var day = d.getDay();
+    var diff = (day === 0 ? 6 : day - 1);
+    d.setDate(d.getDate() - diff);
+    return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate());
+  }
+  function bucketKey(dateStr, gran){
+    if(gran === 'week') return isoWeekStart(dateStr);
+    if(gran === 'month') return dateStr.slice(0,7);
+    if(gran === 'year') return dateStr.slice(0,4);
+    return dateStr;
+  }
+  function bucketLabel(key, gran){
+    if(gran === 'week') return key.slice(5) + '~' + addDays(key,6).slice(5);
+    if(gran === 'day') return key.slice(5);
+    return key;
+  }
+
+  function computeStats(gran){
+    var byKey = {};
     Object.keys(dates).forEach(function(id){
-      var d = dates[id];
-      if(!byDate[d]) byDate[d] = {attempted:0, graded:0, correct:0};
-      byDate[d].attempted++;
+      var k = bucketKey(dates[id], gran);
+      if(!byKey[k]) byKey[k] = {attempted:0, graded:0, correct:0};
+      byKey[k].attempted++;
       var g = grades[id];
-      if(g){ byDate[d].graded++; if(g === 'correct') byDate[d].correct++; }
+      if(g){ byKey[k].graded++; if(g === 'correct') byKey[k].correct++; }
     });
-    return byDate;
+    return byKey;
+  }
+
+  function svgBarChart(buckets, color, maxValue, valueFmt){
+    var w = 640, h = 130, padBottom = 26, padTop = 18, padSide = 6, barGap = 6;
+    var n = buckets.length;
+    var barW = n > 0 ? Math.max(10, (w - padSide*2 - barGap*(n-1)) / n) : 0;
+    var bars = buckets.map(function(b, i){
+      var x = padSide + i*(barW+barGap);
+      if(b.value === null){
+        return '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (h-8) + '" text-anchor="middle" class="chart-lbl">' + escapeHtml(b.label) + '</text>';
+      }
+      var bh = Math.max(2, Math.round((h - padTop - padBottom) * (b.value / maxValue)));
+      var y = h - padBottom - bh;
+      return '<rect x="' + x.toFixed(1) + '" y="' + y + '" width="' + barW.toFixed(1) + '" height="' + bh + '" rx="3" fill="' + color + '"><title>' + escapeHtml(b.title) + '</title></rect>' +
+        '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (y-4) + '" text-anchor="middle" class="chart-val">' + valueFmt(b.value) + '</text>' +
+        '<text x="' + (x+barW/2).toFixed(1) + '" y="' + (h-8) + '" text-anchor="middle" class="chart-lbl">' + escapeHtml(b.label) + '</text>';
+    }).join('');
+    return '<svg viewBox="0 0 ' + w + ' ' + h + '" width="' + w + '" height="' + h + '" class="pc-chart">' +
+      '<line x1="' + padSide + '" y1="' + (h-padBottom) + '" x2="' + (w-padSide) + '" y2="' + (h-padBottom) + '" class="chart-axis"/>' +
+      bars +
+    '</svg>';
+  }
+
+  function buildStatsSection(gran){
+    var byKey = computeStats(gran);
+    var allKeys = Object.keys(byKey).sort();
+    var gLabel = GRAN_LABEL[gran];
+
+    var tabsHtml = '<div class="pc-tabs">' + Object.keys(GRAN_LABEL).map(function(g){
+      return '<button type="button" class="pc-tab' + (g===gran?' active':'') + '" data-gran="' + g + '">按' + GRAN_LABEL[g] + '</button>';
+    }).join('') + '</div>';
+
+    if(allKeys.length === 0){
+      return tabsHtml + '<p class="pc-empty">还没有打卡记录。No progress yet.</p>';
+    }
+
+    var cap = GRAN_CAP[gran];
+    var recentKeys = allKeys.slice(-cap);
+    var chartBuckets = recentKeys.map(function(k){
+      var s = byKey[k];
+      return {label: bucketLabel(k, gran), value: s.attempted, title: k + '：完成' + s.attempted + '题'};
+    });
+    var accBuckets = recentKeys.map(function(k){
+      var s = byKey[k];
+      var rate = s.graded > 0 ? Math.round(100*s.correct/s.graded) : null;
+      return {label: bucketLabel(k, gran), value: rate, title: k + '：' + (rate===null ? '还没有批改' : ('正确率' + rate + '%（' + s.correct + '/' + s.graded + '）'))};
+    });
+    var maxAttempted = Math.max(1, chartBuckets.reduce(function(m,b){ return Math.max(m,b.value); }, 1));
+
+    var noteHtml = allKeys.length > cap ? '<p class="pc-chart-note">图表只显示最近 ' + cap + ' 个' + gLabel + '，共有 ' + allKeys.length + ' 个' + gLabel + '的记录（下方表格是完整历史）。</p>' : '';
+
+    var chartsHtml =
+      '<div class="pc-chart-title">完成题数 · Questions done</div>' +
+      '<div class="pc-chart-wrap">' + svgBarChart(chartBuckets, 'var(--brand)', maxAttempted, function(v){ return v; }) + '</div>' +
+      '<div class="pc-chart-title">正确率 · Accuracy</div>' +
+      '<div class="pc-chart-wrap">' + svgBarChart(accBuckets, 'var(--good)', 100, function(v){ return v + '%'; }) + '</div>' +
+      noteHtml;
+
+    var totalAttempted=0, totalGraded=0, totalCorrect=0;
+    var rows = allKeys.slice().reverse().map(function(k){
+      var s = byKey[k];
+      totalAttempted += s.attempted; totalGraded += s.graded; totalCorrect += s.correct;
+      var rate = s.graded > 0 ? Math.round(100*s.correct/s.graded) + '%' : '—';
+      return '<tr><td>' + k + '</td><td>' + s.attempted + '</td><td>' + s.graded + '</td><td>' + s.correct + '</td><td>' + rate + '</td></tr>';
+    }).join('');
+    var totalRate = totalGraded > 0 ? Math.round(100*totalCorrect/totalGraded) + '%' : '—';
+    var tableHtml = '<table class="pc-stats"><thead><tr><th>' + gLabel + '</th><th>完成 Done</th><th>已批改 Graded</th><th>正确 Correct</th><th>正确率 Rate</th></tr></thead><tbody>' +
+      rows + '<tr class="pc-total"><td>合计 Total</td><td>' + totalAttempted + '</td><td>' + totalGraded + '</td><td>' + totalCorrect + '</td><td>' + totalRate + '</td></tr></tbody></table>';
+
+    return tabsHtml + chartsHtml + tableHtml;
   }
 
   function buildParentCenter(){
-    var byDate = computeDailyStats();
-    var datesList = Object.keys(byDate).sort().reverse();
-
-    var statsHtml = '<div class="pc-section"><h3>每日统计 · Daily Stats</h3>';
-    if(datesList.length === 0){
-      statsHtml += '<p class="pc-empty">还没有打卡记录。No progress yet.</p>';
-    } else {
-      var totalAttempted=0, totalGraded=0, totalCorrect=0;
-      statsHtml += '<table class="pc-stats"><thead><tr><th>日期 Date</th><th>完成 Done</th><th>已批改 Graded</th><th>正确 Correct</th><th>正确率 Rate</th></tr></thead><tbody>';
-      datesList.forEach(function(d){
-        var s = byDate[d];
-        totalAttempted += s.attempted; totalGraded += s.graded; totalCorrect += s.correct;
-        var rate = s.graded > 0 ? Math.round(100*s.correct/s.graded) + '%' : '—';
-        statsHtml += '<tr><td>' + d + '</td><td>' + s.attempted + '</td><td>' + s.graded + '</td><td>' + s.correct + '</td><td>' + rate + '</td></tr>';
-      });
-      var totalRate = totalGraded > 0 ? Math.round(100*totalCorrect/totalGraded) + '%' : '—';
-      statsHtml += '<tr class="pc-total"><td>合计 Total</td><td>' + totalAttempted + '</td><td>' + totalGraded + '</td><td>' + totalCorrect + '</td><td>' + totalRate + '</td></tr>';
-      statsHtml += '</tbody></table>';
-    }
-    statsHtml += '</div>';
+    var statsHtml = '<div class="pc-section"><h3>历史统计 · History Stats</h3>' + buildStatsSection(currentGranularity) + '</div>';
 
     var gradeHtml = '<div class="pc-section"><h3>逐题批改 · Grade Answers</h3>';
     var solvedIds = Object.keys(solved).filter(function(id){ return solved[id]; }).sort();
@@ -842,6 +929,12 @@ footer button:hover{border-color:var(--brand); color:var(--brand);}
     if(e.target === parentOverlay) parentOverlay.classList.remove('open');
   });
   parentBody.addEventListener('click', function(e){
+    var tab = e.target.closest('.pc-tab');
+    if(tab){
+      currentGranularity = tab.getAttribute('data-gran');
+      buildParentCenter();
+      return;
+    }
     var btn = e.target.closest('.grade-btn');
     if(!btn) return;
     var row = btn.closest('.pc-grade-row');
