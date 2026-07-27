@@ -19,6 +19,7 @@
 - `shared.css` / `shared.js` —— 所有年级页面共用的样式和逻辑（题卡渲染、图示、双语朗读、家长中心、深浅色切换）。改功能只改这两个文件，不用每个年级页面都改一遍。
 - 每个年级页面只有该年级的题目 HTML + 一小段内联脚本（设置 `TIER_PREFIX`/`WORLD_IDS`/`WORLD_TOTALS`），然后引用 `shared.js`。
 - localStorage key 按年级加了前缀（如 `thinking.g56.solved.v1`），不同年级/不同孩子的打卡记录不会互相覆盖。深浅色主题偏好是全站共用的（`thinking.theme`）。
+- `tools/split_tiers.js` —— `grade5-6.html`/`grade7-plus.html` 是从这个脚本生成的，不是手写的。里面的 `TIER3`/`TIER4` 数组是原100题的年级分类，想调整某道题该在哪个年级，改数组后 `node tools/split_tiers.js` 重新生成即可（`grade3-4.html`/`grades.html` 是手写的，这个脚本不管）。
 
 ## 六大板块（五六年级、七年级+页面都用这套分类）
 
