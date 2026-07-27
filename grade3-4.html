@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>思维闯关 · 三四年级 · 入门题库</title>
+<meta name="description" content="面向三四年级的入门思维训练题，中英对照，配图示，家长中心可查看每日进度。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E8792C'/%3E%3Cpath d='M30 38a12 12 0 0 1 12-12h4a8 8 0 0 0 8 8 8 8 0 0 0 8-8h4a12 12 0 0 1 12 12v4a8 8 0 0 0-8 8 8 8 0 0 0 8 8v4a12 12 0 0 1-12 12h-4a8 8 0 0 0-8-8 8 8 0 0 0-8 8h-4a12 12 0 0 1-12-12v-4a8 8 0 0 0 8-8 8 8 0 0 0-8-8z' fill='%23FFF8EC'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,800;1,600&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+</head>
+<body>
+
+<div class="hud">
+  <div class="wrap hud-inner">
+    <div class="hud-score">已闯关 <b id="hudCount">0</b> / 6</div>
+    <div class="hud-bar"><i id="hudFill"></i></div>
+    <div class="hud-worlds">
+      <a href="#m1" title="数字与应用题" style="--card-c:var(--w1)">01</a>
+      <a href="#m2" title="图形思维" style="--card-c:var(--w2)">02</a>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="切换深浅色模式">◐</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker"><span class="dot"></span>Grade 3-4 · Getting Started</p>
+  <h1>思维闯关<span class="accent">三四年级</span></h1>
+  <p class="sub">三四年级入门思维题，题量还不多，是刚开始的一批试点题，之后会陆续增加。
+    <span class="en">Grade 3-4 starter puzzles — a small pilot batch, with more on the way.</span>
+  </p>
+</header>
+
+<nav class="map">
+  <a href="#m1"><span class="num">WORLD 01 · 4题</span><span class="name">数字与应用题</span><span class="en">Numbers &amp; Word Problems</span>
+    <span class="prog"><span class="track"><i data-prog="m1"></i></span><span data-count="m1">0/4</span></span></a>
+  <a href="#m2"><span class="num">WORLD 02 · 2题</span><span class="name">图形思维</span><span class="en">Shape Thinking</span>
+    <span class="prog"><span class="track"><i data-prog="m2"></i></span><span data-count="m2">0/2</span></span></a>
+</nav>
+
+<section class="world" id="m1">
+  <div class="world-head">
+    <span class="badge">WORLD 01</span>
+    <h2>数字与应用题</h2>
+    <span class="en">Numbers &amp; Word Problems</span>
+    <span class="count">4 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="g34-01"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="1">Lv.1</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Find the pattern and fill in the blanks: 2, 4, 6, 8, __, __?</div><div class="zh">找规律填空：2, 4, 6, 8, __, __？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+    <div class="quest" data-q="g34-02"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">Find the pattern and fill in the blank: 1, 4, 9, 16, __?</div><div class="zh">找规律填空：1, 4, 9, 16, __？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+    <div class="quest" data-q="g34-03"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">A farm has chickens and rabbits, 8 animals in total. Counting legs, there are 22 in total. How many rabbits and how many chickens?</div><div class="zh">农场里有鸡和兔，一共8只动物，数一数腿一共有22条。鸡有几只？兔有几只？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+    <div class="quest" data-q="g34-05"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">A two-digit number: its two digits add up to 9, and the tens digit is 7 more than the units digit. What's the number?</div><div class="zh">一个两位数：十位和个位数字加起来是9，十位数字比个位数字大7。这个数是几？</div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+  </div>
+</section>
+
+<section class="world" id="m2">
+  <div class="world-head">
+    <span class="badge">WORLD 02</span>
+    <h2>图形思维</h2>
+    <span class="en">Shape Thinking</span>
+    <span class="count">2 题</span>
+  </div>
+  <div class="quests">
+    <div class="quest" data-q="g34-04"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">In the figure, the midpoints of each side of the big triangle are connected. How many triangles are there in total (of any size)?</div><div class="zh">图中把大三角形每条边的中点连了起来。图里一共有多少个三角形（大小都算）？</div><div class="quest-diagram"><svg viewBox="0 0 200 180" role="img" aria-label="triangle with midpoints connected"><rect x="0" y="0" width="200" height="180" rx="16" fill="var(--w2-soft)"/><polygon points="100,20 20,160 180,160" fill="none" stroke="var(--w2)" stroke-width="4" stroke-linejoin="round"/><polygon points="60,90 140,90 100,160" fill="none" stroke="var(--w2)" stroke-width="3" stroke-linejoin="round"/></svg></div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+    <div class="quest" data-q="g34-06"><label class="chk"><input type="checkbox"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></label><span class="lv" data-lv="2">Lv.2</span><div><div class="speak-row"><button type="button" class="speak-btn" data-lang="en-US" aria-label="Read in English"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>EN</button><button type="button" class="speak-btn" data-lang="zh-CN" aria-label="朗读中文"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3z"/><path d="M16.5 12c0-1.77-.77-3.29-2-4.24v8.48c1.23-.95 2-2.47 2-4.24z"/></svg>中文</button></div><div class="en">On the grid shown, only moving right or down along the lines, how many different paths are there from the top-left dot to the bottom-right dot?</div><div class="zh">在图中的方格里，只能沿线向右或向下走，从左上角的点走到右下角的点，一共有多少种不同走法？</div><div class="quest-diagram"><svg viewBox="0 0 140 140" role="img" aria-label="2 by 2 grid with start and end marked"><rect x="0" y="0" width="140" height="140" rx="16" fill="var(--w2-soft)"/><g stroke="var(--w2)" stroke-width="3" stroke-linecap="round"><line x1="20" y1="20" x2="120" y2="20"/><line x1="20" y1="70" x2="120" y2="70"/><line x1="20" y1="120" x2="120" y2="120"/><line x1="20" y1="20" x2="20" y2="120"/><line x1="70" y1="20" x2="70" y2="120"/><line x1="120" y1="20" x2="120" y2="120"/></g><circle cx="20" cy="20" r="6" fill="var(--w2)"/><circle cx="120" cy="120" r="6" fill="var(--w2)"/></svg></div><div class="answer-row"><input type="text" class="answer-input" placeholder="写下你的答案... / Your answer..."></div><div class="help-row"><button type="button" class="help-btn hint-btn">提示 Hint</button><button type="button" class="help-btn giveup-btn">认输看答案 Hands up</button></div><div class="hint-box" hidden></div><div class="answer-box" hidden></div></div></div>
+  </div>
+</section>
+
+<footer>
+  <span>共 6 题 · 三四年级试点题库（陆续增加）</span>
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <button id="reportBtn" style="font-family:'Nunito',sans-serif; font-weight:800; color:#fff; background:var(--brand); border:none; border-radius:999px; padding:7px 16px; cursor:pointer; font-size:13px;">生成做题报告 · Report for parents</button>
+    <button id="parentBtn" style="font-family:'Nunito',sans-serif; font-weight:800; color:#fff; background:var(--good); border:none; border-radius:999px; padding:7px 16px; cursor:pointer; font-size:13px;">家长中心 · Parent Center</button>
+    <button id="resetBtn">重置打卡进度 · Reset progress</button>
+  </div>
+</footer>
+
+</div>
+
+<div class="report-overlay" id="reportOverlay">
+  <div class="report-card">
+    <div class="report-head">
+      <h2>做题报告 · Progress Report</h2>
+      <button class="report-close" id="reportClose" aria-label="关闭">✕</button>
+    </div>
+    <p class="report-sub">把下面的内容复制发给家长，让他们知道做了哪些题、写了什么答案。<br>Copy this and send it to a parent so they can see what's been done.</p>
+    <div class="report-actions">
+      <button id="reportCopyBtn">复制报告 · Copy report</button>
+      <button id="reportDownloadBtn" class="secondary">下载文件 · Download .txt</button>
+    </div>
+    <div class="report-body" id="reportBody"></div>
+    <p class="report-copy-note" id="reportCopyNote"></p>
+  </div>
+</div>
+
+<div class="report-overlay" id="parentOverlay">
+  <div class="report-card">
+    <div class="report-head">
+      <h2>家长中心 · Parent Center</h2>
+      <button class="report-close" id="parentClose" aria-label="关闭">✕</button>
+    </div>
+    <p class="report-sub">每日做题统计，以及逐题核对孩子的答案并标记对错（用于计算正确率）。<br>Daily progress stats, plus grade each answer against the reference solution to track accuracy.</p>
+    <div class="report-body" id="parentBody"></div>
+  </div>
+</div>
+
+<script>window.TIER_PREFIX = 'g34'; window.WORLD_IDS = ['m1','m2']; window.WORLD_TOTALS = {m1:4,m2:2};</script>
+<script src="shared.js"></script>
+</body>
+</html>

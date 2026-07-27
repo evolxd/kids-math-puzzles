@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>思维闯关 · 选择年级</title>
+<meta name="description" content="按年级挑选合适难度的思维训练题库，一二年级到七年级+挑战。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E8792C'/%3E%3Cpath d='M30 38a12 12 0 0 1 12-12h4a8 8 0 0 0 8 8 8 8 0 0 0 8-8h4a12 12 0 0 1 12 12v4a8 8 0 0 0-8 8 8 8 0 0 0 8 8v4a12 12 0 0 1-12 12h-4a8 8 0 0 0-8-8 8 8 0 0 0-8 8h-4a12 12 0 0 1-12-12v-4a8 8 0 0 0 8-8 8 8 0 0 0-8-8z' fill='%23FFF8EC'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,800;1,600&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.grades-wrap{max-width:760px; margin:0 auto; padding:60px 20px 80px;}
+.grade-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; margin-top:36px;}
+.grade-card{
+  border-radius:20px; padding:24px 22px; box-shadow:var(--shadow); text-decoration:none; color:var(--ink);
+  border:2px solid var(--line); display:flex; flex-direction:column; gap:8px; position:relative; overflow:hidden;
+}
+.grade-card.g1{background:var(--w5-soft);} .grade-card.g1 .badge{background:var(--w5); }
+.grade-card.g34{background:var(--w2-soft);} .grade-card.g34 .badge{background:var(--w2); }
+.grade-card.g56{background:var(--w1-soft);} .grade-card.g56 .badge{background:var(--w1); }
+.grade-card.g7{background:var(--w6-soft);} .grade-card.g7 .badge{background:var(--w6); }
+.grade-card.soon{opacity:.6; cursor:default;}
+.grade-card .badge{
+  display:inline-flex; align-self:flex-start; color:#fff; font-family:"JetBrains Mono",monospace;
+  font-weight:700; font-size:11px; padding:4px 10px; border-radius:999px; letter-spacing:.04em;
+}
+.grade-card h3{font-family:"Baloo 2",sans-serif; font-size:22px; margin:2px 0 0;}
+.grade-card p{margin:0; font-size:13.5px; color:var(--ink-soft); line-height:1.5;}
+.grade-card .count{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--ink-soft); margin-top:auto; padding-top:8px;}
+.grade-card:hover:not(.soon){transform:translateY(-3px); transition:transform .15s ease;}
+.all-link{display:block; text-align:center; margin-top:32px; font-size:13.5px; color:var(--ink-soft);}
+.all-link a{color:var(--brand-ink); font-weight:700; text-decoration:none;}
+.all-link a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="grades-wrap">
+  <header class="hero" style="padding:0 0 8px;">
+    <p class="kicker"><span class="dot"></span>Pick a Grade</p>
+    <h1>思维闯关<span class="accent">选年级</span></h1>
+    <p class="sub">先选和孩子年级最接近的一档，题目难度是按真实年级校准过的，不是随便分的。
+      <span class="en">Pick the tier closest to your child's grade — difficulty is calibrated by grade level, not just arbitrary labels.</span>
+    </p>
+  </header>
+
+  <div class="grade-cards">
+    <div class="grade-card g1 soon">
+      <span class="badge">一二年级 · GRADE 1-2</span>
+      <h3>启蒙思维</h3>
+      <p>即将上线 Coming soon</p>
+    </div>
+
+    <a class="grade-card g34" href="grade3-4.html">
+      <span class="badge">三四年级 · GRADE 3-4</span>
+      <h3>入门思维</h3>
+      <p>找规律、简单应用题、图形计数——入门难度的思维训练。</p>
+      <span class="count">6 题 · 试点题库，陆续增加</span>
+    </a>
+
+    <a class="grade-card g56" href="grade5-6.html">
+      <span class="badge">五六年级 · GRADE 5-6</span>
+      <h3>奥数基础</h3>
+      <p>六大板块的经典奥数题型，外加"AI时代思维"专题，是内容最完整的一档。</p>
+      <span class="count">60 题 · 七大板块</span>
+    </a>
+
+    <a class="grade-card g7" href="grade7-plus.html">
+      <span class="badge">七年级+ · GRADE 7+</span>
+      <h3>挑战题库</h3>
+      <p>更难的经典题型，包含几道公认的世界级难题，给学有余力的孩子加餐用。</p>
+      <span class="count">43 题 · 六大板块</span>
+    </a>
+  </div>
+
+  <p class="all-link">也可以看<a href="index.html">最初的综合题库（100题，不分年级）</a> · Or browse the original all-in-one 100-question bank</p>
+</div>
+
+<script>
+(function(){
+  var themeKey = 'thinking.theme';
+  var saved = localStorage.getItem(themeKey);
+  if(saved){ document.documentElement.setAttribute('data-theme', saved); }
+})();
+</script>
+</body>
+</html>
