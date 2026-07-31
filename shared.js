@@ -23,13 +23,28 @@ var TIER_PREFIX = window.TIER_PREFIX || 'all';
   var worldIds = window.WORLD_IDS || ['m1','m2','m3','m4','m5','m6'];
   var totals = window.WORLD_TOTALS || {m1:17,m2:16,m3:17,m4:17,m5:16,m6:17};
 
+  // scope by DOM containment, not by data-q prefix — some pages (e.g. grade3-4) use
+  // question ids that don't match their world id (g34-01 lives inside section#m1)
+  function questsInWorld(w){
+    return document.querySelectorAll('#' + w + ' .quest');
+  }
+  function worldDisplayName(w){
+    var h2 = document.querySelector('#' + w + ' .world-head h2');
+    if(h2){
+      var enEl = document.querySelector('#' + w + ' .world-head .en');
+      return [h2.textContent, enEl ? enEl.textContent : ''];
+    }
+    return worldNames[w] || [w, w];
+  }
+
   function save(){ localStorage.setItem(KEY, JSON.stringify(solved)); }
 
   function render(){
     var total = 0, done = 0;
+    var worldCounts = {};
     worldIds.forEach(function(w){
       var count = 0;
-      document.querySelectorAll('.quest[data-q^="'+w+'-"]').forEach(function(q){
+      questsInWorld(w).forEach(function(q){
         var id = q.getAttribute('data-q');
         var cb = q.querySelector('input[type="checkbox"]');
         var isSolved = !!solved[id];
@@ -39,14 +54,68 @@ var TIER_PREFIX = window.TIER_PREFIX || 'all';
       });
       total += totals[w];
       done += count;
+      worldCounts[w] = count;
       var pct = Math.round(100 * count / totals[w]);
       var track = document.querySelector('.map i[data-prog="'+w+'"]');
       if(track) track.style.width = pct + '%';
       var label = document.querySelector('.map span[data-count="'+w+'"]');
       if(label) label.textContent = count + '/' + totals[w];
     });
-    document.getElementById('hudCount').textContent = done;
-    document.getElementById('hudFill').style.width = Math.round(100*done/total) + '%';
+    var hudCount = document.getElementById('hudCount');
+    var hudFill = document.getElementById('hudFill');
+    if(hudCount) hudCount.textContent = done;
+    if(hudFill) hudFill.style.width = Math.round(100*done/total) + '%';
+    buildAdvMap(worldCounts);
+  }
+
+  // adventure-map path+nodes (only runs if the page has the markup; no-op otherwise)
+  function buildAdvMap(worldCounts){
+    var pathSvg = document.getElementById('advPathSvg');
+    var nodesWrap = document.getElementById('advNodes');
+    if(!pathSvg || !nodesWrap) return;
+
+    var starsEl = document.getElementById('advStars');
+    if(starsEl){
+      var stars = 0;
+      Object.keys(grades).forEach(function(id){ if(grades[id] === 'correct') stars++; });
+      starsEl.textContent = stars;
+    }
+
+    var n = worldIds.length;
+    var nodeH = 130, topPad = 40;
+    var svgH = topPad + Math.max(n - 1, 0) * nodeH + 60;
+    pathSvg.setAttribute('viewBox', '0 0 400 ' + svgH);
+
+    var pts = worldIds.map(function(w, i){
+      return { x: (i % 2 === 0) ? 300 : 100, y: topPad + i * nodeH };
+    });
+    var d = pts.length ? ('M ' + pts[0].x + ' ' + pts[0].y) : '';
+    for(var i = 1; i < pts.length; i++){
+      var midY = (pts[i-1].y + pts[i].y) / 2;
+      d += ' C ' + pts[i-1].x + ' ' + midY + ', ' + pts[i].x + ' ' + midY + ', ' + pts[i].x + ' ' + pts[i].y;
+    }
+    pathSvg.innerHTML = d ? '<path d="' + d + '" stroke="var(--adv-path)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="2 24"/>' : '';
+
+    var firstIncompleteFound = false;
+    var html = worldIds.map(function(w, i){
+      var name = worldDisplayName(w)[0];
+      var count = worldCounts[w] || 0;
+      var tot = totals[w] || 0;
+      var state;
+      if(tot > 0 && count >= tot){ state = 'done'; }
+      else if(!firstIncompleteFound){ state = 'current'; firstIncompleteFound = true; }
+      else { state = 'upcoming'; }
+      var icon = state === 'done' ? '✅' : (state === 'current' ? '✏️' : '🔒');
+      var tagText = state === 'upcoming' ? name : (name + ' · ' + count + '/' + tot);
+      var side = (i % 2 === 0) ? 'right' : 'left';
+      return '<div class="advmap-node-row ' + side + '">' +
+        '<a class="advmap-node" href="#' + w + '">' +
+          '<div class="advmap-circle ' + state + '">' + icon + '</div>' +
+          '<div class="advmap-tag ' + state + '">' + tagText + '</div>' +
+        '</a>' +
+      '</div>';
+    }).join('');
+    nodesWrap.innerHTML = html;
   }
 
   document.querySelectorAll('.quest').forEach(function(q){
@@ -109,11 +178,11 @@ var TIER_PREFIX = window.TIER_PREFIX || 'all';
     var gradeLabel = {correct:'[✓对/Correct] ', incorrect:'[✗错/Incorrect] '};
 
     worldIds.forEach(function(w){
-      var name = worldNames[w];
+      var name = worldDisplayName(w);
       var worldTextLines = [];
       var worldHtml = '<div class="report-world"><h3>' + name[0] + ' · ' + name[1] + '</h3>';
 
-      document.querySelectorAll('.quest[data-q^="'+w+'-"]').forEach(function(q){
+      questsInWorld(w).forEach(function(q){
         var id = q.getAttribute('data-q');
         var isSolved = !!solved[id];
         var grade = grades[id];
@@ -380,6 +449,7 @@ var TIER_PREFIX = window.TIER_PREFIX || 'all';
     }
     saveGrades();
     buildParentCenter();
+    render();
   });
 
   // hints & answers: [hintEN, hintZH, answerEN, answerZH]

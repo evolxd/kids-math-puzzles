@@ -13,34 +13,42 @@
 </head>
 <body>
 
-<div class="hud">
-  <div class="wrap hud-inner">
-    <div class="hud-score">已闯关 <b id="hudCount">0</b> / 6</div>
-    <div class="hud-bar"><i id="hudFill"></i></div>
-    <div class="hud-worlds">
-      <a href="#m1" title="数字与应用题" style="--card-c:var(--w1)">01</a>
-      <a href="#m2" title="图形思维" style="--card-c:var(--w2)">02</a>
+<div class="advmap-wrap">
+  <svg class="advmap-cloud" style="top:20px;left:4%;width:90px;" viewBox="0 0 120 60"><ellipse cx="30" cy="35" rx="30" ry="20" fill="#fff"/><ellipse cx="60" cy="25" rx="35" ry="25" fill="#fff"/><ellipse cx="90" cy="35" rx="25" ry="18" fill="#fff"/></svg>
+  <svg class="advmap-cloud" style="top:54px;right:6%;width:70px;" viewBox="0 0 120 60"><ellipse cx="30" cy="35" rx="30" ry="20" fill="#fff"/><ellipse cx="60" cy="25" rx="35" ry="25" fill="#fff"/><ellipse cx="90" cy="35" rx="25" ry="18" fill="#fff"/></svg>
+
+  <div class="advmap-header">
+    <div class="advmap-pill">
+      <div class="advmap-avatar">🦊</div>
+      <div class="advmap-namewrap">
+        <div class="advmap-namesub">思维小侦探</div>
+        <div class="advmap-namemain">三四年级</div>
+      </div>
+      <div class="advmap-divider"></div>
+      <div class="advmap-stars">⭐ <span id="advStars">0</span></div>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="切换深浅色模式">◐</button>
+  </div>
+
+  <h1 class="advmap-title">思维探险岛 🏝️</h1>
+  <p class="advmap-subtitle">跟着小狐狸，一起闯关寻宝！
+    <span class="en">Grade 3-4 starter puzzles — a small pilot batch, with more on the way.</span>
+  </p>
+
+  <div class="advmap-path-wrap">
+    <svg class="advmap-path-svg" id="advPathSvg" viewBox="0 0 400 300" preserveAspectRatio="none"></svg>
+    <div class="advmap-nodes" id="advNodes"></div>
+  </div>
+
+  <div class="advmap-bottomnav">
+    <button type="button" class="advmap-navitem on"><div class="ic">🗺️</div><div class="lb">地图 Map</div></button>
+    <button type="button" class="advmap-navitem disabled" disabled><div class="ic">📚</div><div class="lb">练习册</div></button>
+    <button type="button" class="advmap-navitem disabled" disabled><div class="ic">🏅</div><div class="lb">奖章</div></button>
+    <button type="button" class="advmap-navitem disabled" disabled><div class="ic">👤</div><div class="lb">我的</div></button>
   </div>
 </div>
 
 <div class="wrap">
-
-<header class="hero">
-  <p class="kicker"><span class="dot"></span>Grade 3-4 · Getting Started</p>
-  <h1>思维闯关<span class="accent">三四年级</span></h1>
-  <p class="sub">三四年级入门思维题，题量还不多，是刚开始的一批试点题，之后会陆续增加。
-    <span class="en">Grade 3-4 starter puzzles — a small pilot batch, with more on the way.</span>
-  </p>
-</header>
-
-<nav class="map">
-  <a href="#m1"><span class="num">WORLD 01 · 4题</span><span class="name">数字与应用题</span><span class="en">Numbers &amp; Word Problems</span>
-    <span class="prog"><span class="track"><i data-prog="m1"></i></span><span data-count="m1">0/4</span></span></a>
-  <a href="#m2"><span class="num">WORLD 02 · 2题</span><span class="name">图形思维</span><span class="en">Shape Thinking</span>
-    <span class="prog"><span class="track"><i data-prog="m2"></i></span><span data-count="m2">0/2</span></span></a>
-</nav>
 
 <section class="world" id="m1">
   <div class="world-head">
