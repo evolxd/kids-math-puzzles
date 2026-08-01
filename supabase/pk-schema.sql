@@ -29,6 +29,16 @@ alter table public.pk_rooms enable row level security;
 alter table public.pk_participants enable row level security;
 
 -- ---------------------------------------------------------------------
+-- 授权：建项目时关掉了"Automatically expose new tables"（出于安全考虑，
+-- 见docs/pk-mode-design.md），这意味着 anon 角色对新表默认没有任何权限——
+-- RLS策略本身不会自动带来访问权，没有下面这些GRANT，请求会在RLS判断之前
+-- 就被"permission denied"拦下。
+-- ---------------------------------------------------------------------
+grant usage on schema public to anon;
+grant select, insert, update on public.pk_rooms to anon;
+grant select, insert, update on public.pk_participants to anon;
+
+-- ---------------------------------------------------------------------
 -- RLS策略：这个产品没有账号体系，房间码本身就是访问控制——码是随机生成、
 -- 猜不到的，"知道码"约等于"有权限"。策略只额外挡住一件事：房间过期后
 -- 一律不可读写。
