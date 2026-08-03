@@ -43,13 +43,19 @@
     var body = document.getElementById('pkTabBody');
     body.innerHTML =
       '<div class="pk-field"><label>你的昵称 Your nickname</label><input id="pkNick" maxlength="12" placeholder="比如：小狐狸"></div>' +
+      '<div class="pk-field"><label>选个难度 Pick a level</label>' +
+        '<select id="pkTier">' +
+          '<option value="g34">三四年级 · 入门智力题 Grade 3-4</option>' +
+          '<option value="g7p">七年级+ · 进阶智力题 Grade 7+</option>' +
+        '</select></div>' +
       '<button type="button" class="pk-btn" id="pkCreateBtn">创建房间 · 5道快题</button>';
     document.getElementById('pkCreateBtn').addEventListener('click', async function(){
       var nick = document.getElementById('pkNick').value.trim();
+      var tier = document.getElementById('pkTier').value;
       if(!nick){ showErr('先填个昵称吧 / Enter a nickname first'); return; }
       this.disabled = true; this.textContent = '创建中…';
       try{
-        var room = await window.PK.createRoom(5);
+        var room = await window.PK.createRoom(5, tier);
         var joined = await window.PK.joinRoom(room.code, nick);
         state.mode = 'create'; state.code = room.code; state.questionIds = room.questionIds;
         state.participantId = joined.participantId; state.nickname = nick;
