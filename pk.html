@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PK对战 · 思维闯关</title>
+<meta name="description" content="邀请认识的朋友，快速对战思维题，看谁答得又对又快。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23E8792C'/%3E%3Cpath d='M30 38a12 12 0 0 1 12-12h4a8 8 0 0 0 8 8 8 8 0 0 0 8-8h4a12 12 0 0 1 12 12v4a8 8 0 0 0-8 8 8 8 0 0 0 8 8v4a12 12 0 0 1-12 12h-4a8 8 0 0 0-8-8 8 8 0 0 0-8 8h-4a12 12 0 0 1-12-12v-4a8 8 0 0 0 8-8 8 8 0 0 0-8-8z' fill='%23FFF8EC'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:ital,wght@0,400;0,600;0,800;1,600&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+SC:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+  .pk-wrap{ max-width:560px; margin:0 auto; padding:44px 20px 60px; }
+  .pk-title{ font-family:"Baloo 2",sans-serif; font-weight:800; font-size:30px; text-align:center; margin:0 0 6px; }
+  .pk-title-sub{ text-align:center; color:var(--ink-soft); font-size:14px; margin:0 0 26px; line-height:1.5; }
+  .pk-title-sub em{ display:block; font-style:italic; font-size:12.5px; opacity:.85; margin-top:2px; }
+  .pk-card{ background:var(--panel); border:2px solid var(--line); border-radius:20px; padding:28px 24px; box-shadow:var(--shadow); }
+  .pk-tabs{ display:flex; gap:10px; margin-bottom:20px; }
+  .pk-tab{ flex:1; font-family:"Nunito",sans-serif; font-weight:800; font-size:13.5px; padding:10px; border-radius:12px; border:2px solid var(--line); background:var(--bg); color:var(--ink-soft); cursor:pointer; }
+  .pk-tab.active{ background:var(--brand); border-color:var(--brand); color:#fff; }
+  .pk-field{ margin-bottom:14px; }
+  .pk-field label{ display:block; font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:6px; }
+  .pk-field input{ width:100%; font-family:"Nunito",sans-serif; font-size:16px; padding:11px 14px; border:2px solid var(--line); border-radius:12px; background:var(--bg); color:var(--ink); box-sizing:border-box; }
+  .pk-field input:focus{ outline:none; border-color:var(--brand); }
+  .pk-btn{ width:100%; font-family:"Nunito",sans-serif; font-weight:800; font-size:15px; color:#fff; background:var(--brand); border:none; border-radius:999px; padding:13px; cursor:pointer; }
+  .pk-btn:disabled{ opacity:.5; cursor:default; }
+  .pk-btn.secondary{ background:var(--good); }
+  .pk-code-display{ font-family:"JetBrains Mono",monospace; font-size:40px; font-weight:700; letter-spacing:.12em; text-align:center; color:var(--brand); margin:10px 0; }
+  .pk-hint-text{ text-align:center; font-size:13px; color:var(--ink-soft); margin-bottom:16px; line-height:1.6; }
+  .pk-qcount{ font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--ink-soft); text-align:center; margin-bottom:16px; }
+  .pk-q-en{ font-family:"Nunito",sans-serif; font-size:18px; font-weight:600; line-height:1.5; }
+  .pk-q-zh{ font-family:"Noto Sans SC",sans-serif; font-size:14.5px; color:var(--ink-soft); margin-top:6px; line-height:1.45; }
+  .pk-hint-box{ margin-top:14px; padding:10px 13px; border-radius:12px; font-size:13px; background:var(--w2-soft); color:var(--ink); }
+  .pk-answer-row{ margin-top:16px; display:flex; gap:10px; }
+  .pk-answer-row input{ flex:1; }
+  .pk-feedback{ text-align:center; font-weight:800; font-size:15px; margin-top:14px; padding:10px; border-radius:12px; }
+  .pk-feedback.correct{ background:var(--w1-soft); color:var(--w1); }
+  .pk-feedback.wrong{ background:var(--w3-soft); color:var(--w3); }
+  .pk-waiting{ text-align:center; padding:20px 0; }
+  .pk-waiting .spin{ font-size:30px; animation:pkspin 1.2s linear infinite; display:inline-block; }
+  @keyframes pkspin{ to{ transform:rotate(360deg); } }
+  .pk-results-table{ width:100%; border-collapse:collapse; margin-top:16px; font-size:14px; }
+  .pk-results-table th, .pk-results-table td{ padding:10px; text-align:center; border-bottom:1px solid var(--line); }
+  .pk-results-table th{ font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--ink-soft); }
+  .pk-winner{ font-weight:800; color:var(--brand); }
+  .pk-error{ color:var(--w3); font-size:13px; text-align:center; margin-top:10px; }
+  .pk-back{ display:block; text-align:center; margin-top:20px; font-size:13px; color:var(--ink-soft); text-decoration:none; }
+  .pk-back:hover{ color:var(--brand); }
+</style>
+</head>
+<body>
+
+<div class="pk-wrap">
+  <h1 class="pk-title">⚔️ PK对战擂台</h1>
+  <p class="pk-title-sub">邀请认识的朋友，比一比谁更快更准<em>Quick-fire PK battles — invite a friend you already know.</em></p>
+
+  <div class="pk-card" id="pkCard"></div>
+
+  <a href="grades.html" class="pk-back">← 返回年级选择 / Back to grade picker</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="pk.js"></script>
+<script src="pk-ui.js"></script>
+</body>
+</html>
